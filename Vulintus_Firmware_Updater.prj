@@ -1,8 +1,13 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="2768650130" file="G:\My Drive\Vulintus Software\Common MATLAB Scripts\Vulintus Firmware Updater\Vulintus_Firmware_Updater.prj" location="G:\My Drive\Vulintus Software\Common MATLAB Scripts\Vulintus Firmware Updater" name="Vulintus_Firmware_Updater" preferred-package-location="G:\My Drive\Vulintus Software\Common MATLAB Scripts\Vulintus Firmware Updater\Compiled Vulintus Firmware Updater\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="173463752" file="H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\Vulintus_Firmware_Updater.prj" location="H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater" name="Vulintus_Firmware_Updater" preferred-package-location="H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\compiled\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>Vulintus_Firmware_Updater</param.appname>
-    <param.icon />
-    <param.icons />
+    <param.icon>${PROJECT_ROOT}\Vulintus_Firmware_Updater_resources\icon.ico</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\Vulintus_Firmware_Updater_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\Vulintus_Firmware_Updater_resources\icon_32.png</file>
+      <file>${PROJECT_ROOT}\Vulintus_Firmware_Updater_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\Vulintus_Firmware_Updater_resources\icon_16.png</file>
+    </param.icons>
     <param.version>1.0</param.version>
     <param.authnamewatermark>Drew Sloan</param.authnamewatermark>
     <param.email>drew@vulintus.com</param.email>
@@ -10,18 +15,18 @@
     <param.summary>Utility for loading new microcode onto Vulintus devices.</param.summary>
     <param.description>Vulintus_Firmware_Updater is a utility written in MATLAB that makes it easier to identify Vulintus devices from within a computer's COM port list, and to upload new firmware/microcode without having to install a large programming environment or necessary libraries.
 
-Compiled 2022-02-22, 15:45 MST.</param.description>
-    <param.screenshot>G:\My Drive\Vulintus Documentation\Vulintus Graphics and Stationary\Logos\vulintus_logo_circle_social.jpg</param.screenshot>
+Compiled 2022-11-05, 13:49 MST.</param.description>
+    <param.screenshot />
     <param.guid />
-    <param.installpath.string>\Vulintus, Inc.\Vulintus_Firmware_Updater\</param.installpath.string>
+    <param.installpath.string>\Vulintus\Vulintus_Firmware_Updater\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
     <param.logo />
     <param.install.notes />
     <param.target.install.notes />
-    <param.intermediate>${PROJECT_ROOT}\Compiled Vulintus Firmware Updater\for_testing</param.intermediate>
-    <param.files.only>${PROJECT_ROOT}\Compiled Vulintus Firmware Updater\for_redistribution_files_only</param.files.only>
-    <param.output>${PROJECT_ROOT}\Compiled Vulintus Firmware Updater\for_redistribution</param.output>
-    <param.logdir>${PROJECT_ROOT}\Compiled Vulintus Firmware Updater\logs</param.logdir>
+    <param.intermediate>${PROJECT_ROOT}\compiled\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\compiled\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\compiled\for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}\compiled\logs</param.logdir>
     <param.enable.clean.build>false</param.enable.clean.build>
     <param.user.defined.mcr.options />
     <param.target.type>subtarget.standalone</param.target.type>
@@ -29,7 +34,7 @@ Compiled 2022-02-22, 15:45 MST.</param.description>
     <param.web.mcr>true</param.web.mcr>
     <param.package.mcr>false</param.package.mcr>
     <param.no.mcr>false</param.no.mcr>
-    <param.web.mcr.name>Vulintus_Firmware_Updater_20220222</param.web.mcr.name>
+    <param.web.mcr.name>Vulintus_Firmware_Updater_20221105</param.web.mcr.name>
     <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
     <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
     <param.windows.command.prompt>true</param.windows.command.prompt>
@@ -47,13 +52,11 @@ Compiled 2022-02-22, 15:45 MST.</param.description>
  Description 
  	 Vulintus_Firmware_Updater is a utility written in MATLAB that makes it easier to identify Vulintus devices from within a computer's COM port list, and to upload new firmware/microcode without having to install a large programming environment or necessary libraries.
 
-Compiled 2022-02-22, 15:45 MST.</param.help.text>
+Compiled 2022-11-05, 13:49 MST.</param.help.text>
     <unset>
-      <param.icon />
-      <param.icons />
       <param.version />
+      <param.screenshot />
       <param.guid />
-      <param.installpath.string />
       <param.installpath.combo />
       <param.logo />
       <param.install.notes />
@@ -75,12 +78,13 @@ Compiled 2022-02-22, 15:45 MST.</param.help.text>
       <param.example />
     </unset>
     <fileset.main>
-      <file>${PROJECT_ROOT}\Vulintus_Firmware_Updater.m</file>
+      <file>${PROJECT_ROOT}\src\Vulintus_Firmware_Updater.m</file>
     </fileset.main>
     <fileset.resources>
-      <file>${PROJECT_ROOT}\avrdude.conf</file>
-      <file>${PROJECT_ROOT}\avrdude.exe</file>
-      <file>${PROJECT_ROOT}\bossac.exe</file>
+      <file>${PROJECT_ROOT}\src\avrdude.conf</file>
+      <file>${PROJECT_ROOT}\src\avrdude.exe</file>
+      <file>${PROJECT_ROOT}\src\bossac.exe</file>
+      <file>${PROJECT_ROOT}\src\libusb0.dll</file>
     </fileset.resources>
     <fileset.package>
       <file>${PROJECT_ROOT}\avrdude.conf</file>
@@ -89,19 +93,19 @@ Compiled 2022-02-22, 15:45 MST.</param.help.text>
       <file>${PROJECT_ROOT}\libusb0.dll</file>
     </fileset.package>
     <fileset.depfun>
-      <file>G:\My Drive\Vulintus Software\Common MATLAB Scripts\Common Analysis Toolbox\Add_Msg.m</file>
-      <file>G:\My Drive\Vulintus Software\Common MATLAB Scripts\Common Analysis Toolbox\big_waitbar.m</file>
-      <file>G:\My Drive\Vulintus Software\Common MATLAB Scripts\Common Analysis Toolbox\Clear_Msg.m</file>
-      <file>G:\My Drive\Vulintus Software\Common MATLAB Scripts\Common Analysis Toolbox\cprintf.m</file>
+      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Common Toolbox\Add_Msg.m</file>
+      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Common Toolbox\big_waitbar.m</file>
+      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Common Toolbox\Clear_Msg.m</file>
+      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Common Toolbox\cprintf.m</file>
     </fileset.depfun>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}\Compiled Vulintus Firmware Updater\for_testing" name="readme.txt" optional="true">G:\My Drive\Vulintus Software\Common MATLAB Scripts\Vulintus Firmware Updater\Compiled Vulintus Firmware Updater\for_testing\readme.txt</file>
-      <file location="${PROJECT_ROOT}\Compiled Vulintus Firmware Updater\for_testing" name="Vulintus_Firmware_Updater.exe" optional="false">G:\My Drive\Vulintus Software\Common MATLAB Scripts\Vulintus Firmware Updater\Compiled Vulintus Firmware Updater\for_testing\Vulintus_Firmware_Updater.exe</file>
-      <file location="${PROJECT_ROOT}\Compiled Vulintus Firmware Updater\for_testing" name="splash.png" optional="false">G:\My Drive\Vulintus Software\Common MATLAB Scripts\Vulintus Firmware Updater\Compiled Vulintus Firmware Updater\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\compiled\for_testing" name="splash.png" optional="false">H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\compiled\for_testing\splash.png</file>
+      <file location="${PROJECT_ROOT}\compiled\for_testing" name="readme.txt" optional="true">H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\compiled\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\compiled\for_testing" name="Vulintus_Firmware_Updater.exe" optional="false">H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\compiled\for_testing\Vulintus_Firmware_Updater.exe</file>
     </build-deliverables>
     <workflow />
     <matlab>
-      <root>C:\Program Files\MATLAB\R2021a</root>
+      <root>C:\Program Files\MATLAB\R2022b</root>
       <toolboxes />
     </matlab>
     <platform>
