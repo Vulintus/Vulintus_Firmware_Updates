@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
-  <configuration build-checksum="173463752" file="H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\compiled\Vulintus_Firmware_Updater.prj" location="H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\compiled" name="Vulintus_Firmware_Updater" preferred-package-location="H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\compiled\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+  <configuration build-checksum="512066194" file="H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\compiled\Vulintus_Firmware_Updater.prj" location="H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\compiled" name="Vulintus_Firmware_Updater" preferred-package-location="H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\compiled\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
     <param.appname>Vulintus_Firmware_Updater</param.appname>
     <param.icon>${PROJECT_ROOT}\Vulintus_Firmware_Updater_resources\icon.ico</param.icon>
     <param.icons>
@@ -15,7 +15,7 @@
     <param.summary>Utility for loading new microcode onto Vulintus devices.</param.summary>
     <param.description>Vulintus_Firmware_Updater is a utility written in MATLAB that makes it easier to identify Vulintus devices from within a computer's COM port list, and to upload new firmware/microcode without having to install a large programming environment or necessary libraries.
 
-Compiled 2023-05-16, 13:48 MST.</param.description>
+Compiled 2023-05-16, 14:42 MST.</param.description>
     <param.screenshot>H:\My Drive\Vulintus Software (Drew)\Vulintus Icons and Splash Screens\images\MotoTrak\mototrak_main_splash_screen.png</param.screenshot>
     <param.guid />
     <param.installpath.string>\Vulintus\Vulintus_Firmware_Updater\</param.installpath.string>
@@ -52,7 +52,7 @@ Compiled 2023-05-16, 13:48 MST.</param.description>
  Description 
  	 Vulintus_Firmware_Updater is a utility written in MATLAB that makes it easier to identify Vulintus devices from within a computer's COM port list, and to upload new firmware/microcode without having to install a large programming environment or necessary libraries.
 
-Compiled 2023-05-16, 13:48 MST.</param.help.text>
+Compiled 2023-05-16, 14:42 MST.</param.help.text>
     <unset>
       <param.version />
       <param.guid />
@@ -85,10 +85,10 @@ Compiled 2023-05-16, 13:48 MST.</param.help.text>
       <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\src\libusb0.dll</file>
     </fileset.resources>
     <fileset.package>
-      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\avrdude.conf</file>
-      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\avrdude.exe</file>
-      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\bossac.exe</file>
-      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\libusb0.dll</file>
+      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\src\avrdude.conf</file>
+      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\src\avrdude.exe</file>
+      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\src\bossac.exe</file>
+      <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Firmware Updater\src\libusb0.dll</file>
     </fileset.package>
     <fileset.depfun>
       <file>H:\My Drive\Vulintus Software (Drew)\Vulintus Common MATLAB Scripts\Vulintus Common Toolbox\Add_Msg.m</file>
