@@ -20,7 +20,7 @@ Compiled 2023-05-16, 13:48 MST.</param.description>
     <param.guid />
     <param.installpath.string>\Vulintus\Vulintus_Firmware_Updater\</param.installpath.string>
     <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
-    <param.logo />
+    <param.logo>H:\My Drive\Vulintus Software (Drew)\Vulintus Icons and Splash Screens\images\MotoTrak\mototrak_main_splash_screen.png</param.logo>
     <param.install.notes />
     <param.target.install.notes />
     <param.intermediate>${PROJECT_ROOT}\for_testing</param.intermediate>
@@ -57,7 +57,6 @@ Compiled 2023-05-16, 13:48 MST.</param.help.text>
       <param.version />
       <param.guid />
       <param.installpath.combo />
-      <param.logo />
       <param.install.notes />
       <param.target.install.notes />
       <param.enable.clean.build />
