@@ -230,13 +230,23 @@ switch programmer                                                           %Swi
             '-Uflash:w:"' file '":i'];                                      %hex file name.
     case 'bossac.exe'                                                       %If we're using bossac...
 
+%         'https://github.com/arduino/arduino-flash-tools/raw/master/tools_darwin/bossac/bin/bossac'
+        
         if ~exist(fullfile(cur_dur,programmer),'file')                      %If bossac.exe or it's configuration file aren't found...
-            errordlg(sprintf(['ERROR: Could not find programmer %s or '...
-                'associated files in the current directory.'],...
-                programmer),...
-                'Required Programming Files Not Found!');                   %Show an error in a dialog box.
-            close(hObject.Parent);                                          %Close the figure.
-            return                                                          %Skip execution of the function.
+            bossac_url = 'https://github.com/Vulintus/Vulintus_Firmware_Updater/raw/main/src/bossac.exe';
+            try                                                             %Try to download bossac.
+                bossac = webread(bossac_url);                               %Grab the bossac binary.
+                fid = fopen(fullfile(cur_dur,programmer),'w');              %Open a binary file for writing.
+                fwrite(fid,bossac);                                         %Write the binary data to the file.
+                fclose(fid);                                                %Close the *.exe.
+            catch
+                errordlg(sprintf(['ERROR: Could not find programmer '...
+                    '%s or associated files in the current directory.'],...
+                    programmer),...
+                    'Required Programming Files Not Found!');               %Show an error in a dialog box.
+                close(hObject.Parent);                                      %Close the figure.
+                return                                                      %Skip execution of the function.
+            end
         end
 %         copyfile(fullfile(cur_dur,programmer),tempdir,'f');                 %Copy avrdude.exe to the temporary folder.
         Add_Msg(msgbox,'Attempting programming reset...');                  %Show a message in the messagebox.
