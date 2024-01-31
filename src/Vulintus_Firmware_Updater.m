@@ -1,5 +1,17 @@
 function Vulintus_Firmware_Updater(varargin)
 
+%Vulintus_Firmware_Updater.m - Vulintus, Inc., 2021
+%
+%   VULINTUS_FIRMWARE_UPDATER creates and executes firmware programming
+%   commands for the avrdude.exe (AVR microcontrollers) and bossac.exe
+%   (SAMD microcontrollers) firmware uploading programs. Users select a COM
+%   port target, a HEX or BIN file, and the upload program, and the script
+%   then creates the appropriate command line entry.
+%
+%   UPDATE LOG:
+%   2021-??-?? - Drew Sloan - Function first created.
+%
+
 close all force;                                                            %Close any existing figures.
 
 if ~isdeployed                                                              %If the function is running as a script instead of deployed code...
@@ -25,7 +37,7 @@ end
 ui_h = 0.7;                                                                 %Set the height for all buttons, in centimeters.
 fig_w = 15;                                                                 %Set the width of the figure, in centimeters.
 ui_sp = 0.1;                                                                %Set the space between uicontrols, in centimeters.
-fig_h = 6*ui_sp + 12*ui_h;                                                   %Calculate the height of the figure.
+fig_h = 6*ui_sp + 12*ui_h;                                                  %Calculate the height of the figure.
 set(0,'units','centimeters');                                               %Set the screensize units to centimeters.
 pos = get(0,'ScreenSize');                                                  %Grab the screensize.
 pos = [pos(3)/2-fig_w/2, pos(4)/2-fig_h/2, fig_w, fig_h];                   %Scale a figure position relative to the screensize.
@@ -191,7 +203,8 @@ file = file_edit.UserData;                                                  %Gra
 % copyfile(file,temp_file,'f');                                               %Copy the file to the temporary directory.
 temp = prog_pop.String;                                                     %Grab the string from the programmer pop-up menu.
 programmer = temp{prog_pop.Value};                                          %Grab the name of the selected COM port.
-switch programmer                                                           %Switch between teh programmers.
+switch programmer                                                           %Switch between the programmers.
+
     case 'avrdude.exe'                                                      %If we're using avrdude...
         if ~exist(fullfile(cur_dur,programmer),'file') || ...
                 ~exist(fullfile(cur_dur, 'avrdude.conf'),'file') || ...
@@ -216,6 +229,7 @@ switch programmer                                                           %Swi
             '-D '...                                                        %disable erasing the chip
             '-Uflash:w:"' file '":i'];                                      %hex file name.
     case 'bossac.exe'                                                       %If we're using bossac...
+
         if ~exist(fullfile(cur_dur,programmer),'file')                      %If bossac.exe or it's configuration file aren't found...
             errordlg(sprintf(['ERROR: Could not find programmer %s or '...
                 'associated files in the current directory.'],...
@@ -226,43 +240,50 @@ switch programmer                                                           %Swi
         end
 %         copyfile(fullfile(cur_dur,programmer),tempdir,'f');                 %Copy avrdude.exe to the temporary folder.
         Add_Msg(msgbox,'Attempting programming reset...');                  %Show a message in the messagebox.
+        original_ports = instrhwinfo('serial');                             %Grab information about the currently-available serial ports.
+        original_ports = original_ports.SerialPorts;                        %Save the list of all serial ports regardless of whether they're busy.
         serialcon = serialport(port,1200);                                  %Set up the serial connection on the specified port.
-        pause(10);                                                          %Pause for 10 milliseconds.
+        pause(5);                                                           %Pause for 5 seconds.
         delete(serialcon);                                                  %Delete the serial object.
+        pause(5);                                                           %Pause for 5 seconds.
         temp_port = instrhwinfo('serial');                                  %Grab information about the available serial ports.
         temp_port = temp_port.SerialPorts;                                  %Save the list of all serial ports regardless of whether they're busy.
-        key = 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB\';      %Set the registry query field.
-        [~, txt] = ...
-            dos(['REG QUERY ' key ' /s /f "FriendlyName" /t "REG_SZ"']);    %Query the registry for all USB devices.
-        checker = zeros(numel(temp_port),1);                                %Create a check matrix to identify Arduino Unos.
-        for i = 1:numel(temp_port)                                          %Step through each port name.
-            j = strfind(txt,['(' temp_port{i} ')']);                        %Find the port in the USB device list.    
-            if ~isempty(j)                                                  %If a matching port was found...
-                k = strfind(txt(1:j),'    ');                               %Find all quadruple spaces preceding the port.
-                type = txt(k(end)+4:j-2);                                   %Grab the description.
-                if strcmpi(type,'Arduino Zero bootloader')                  %If an Arduino Zero bootloader was found...
-                    checker(i) = 1;                                         %Mark this port for upload.
-                end
-            end
-        end
-        if any(checker == 1)                                                %If an upload port was found...
-            temp_port = temp_port(checker == 1);                            %Kick out all non-upload ports.
-            Add_Msg(msgbox,sprintf('Upload port found: %s...',...
-                temp_port{1}));                                             %Show a message in the messagebox.
+        new_port = setdiff(temp_port,original_ports);                       %Check to see if a new COM port showed up.
+        if ~isempty(new_port)                                               %If a new port was found...
+            temp_port = new_port{1};                                        %Set the new port as the target.            
+            str = sprintf('Upload port found: %s...',temp_port);            %Show a message in the messagebox.
         else                                                                %Otherwise...
-            Add_Msg(msgbox,['Arduino Zero didn''t reset! No upload port '...
-                'found']);                                                  %Show a message in the messagebox.
+            temp_port = port;                                               %Use the original port.
+            str = sprintf('No port reset detected! Using %s.',temp_port);   %Create a messagebox message.
         end
+        Add_Msg(msgbox,str);                                                %Sow a message in the messagebox.
+
+        % "C:\Users\drew\AppData\Local\Arduino15\packages\adafruit\tools\bossac\1.8.0-48-gb176eee/bossac" 
+        % -i 
+        % -d 
+        % --port=COM10 
+        % -U 
+        % -i 
+        % --offset=0x4000 
+        % -w 
+        % -v 
+        % "C:\Users\drew\AppData\Local\Temp\arduino\sketches\42E4916E2275720E41C66BEA2D560F1E/OmniTrak_Controller_5Poke.ino.bin" 
+        % -R
+        [~, programmer, ~] = fileparts(programmer);                         %Strip the file extension from the programmer name.
         cmd = ['"' fullfile(cur_dur,programmer) '" '...                     %bossac.exe location
             '-i '...                                                        %Display diagnostic information about the device.
             '-d '...                                                        %Print verbose diagnostic messages
-            '--port=' temp_port{1} ' '...                                           %Set the COM port.
-            '-U true '...                                                   %Disable automatic COM port detection.
-            '-e '...                                                        %Erase the target's flash memory before writing.
+            '--port=' temp_port ' '...                                      %Set the COM port.
+            '-U '...                                                        %Allow automatic COM port detection.
+            '-i '...                                                        %Display diagnostic information about the device.
+            '--offset=0x4000 '...                                           %Specify the flash memory starting offset (to retain the bootloader).
             '-w '...                                                        %Write the file to the target's flash memory.
             '-v '...                                                        %Verify the file matches the contents after writing.
-            '"' temp_file '" '...                                           %Set the file.
+            '"' file '" '...                                                %Set the file.
             '-R'];                                                          %Reset the microcontroller after writing the flash.
+
+        % cmd = '"H:\My Drive\Vulintus Software (Drew)\Vulintus Common Functions\Vulintus Firmware Updater\src\bossac" -i -d --port=COM10 -U -i --offset=0x4000 -w -v "H:\My Drive\Vulintus Software (Drew)\Custom Software\Aldridge Lab (U-Iowa)\Firmware\OmniTrak_Controller_5Poke.ino.bin" -R'
+        % cmd = '"C:\Users\drew\AppData\Local\Arduino15\packages\adafruit\tools\bossac\1.8.0-48-gb176eee/bossac" -i -d --port=COM10 -U -i --offset=0x4000 -w -v "C:\Users\drew\AppData\Local\Temp\arduino\sketches\42E4916E2275720E41C66BEA2D560F1E/OmniTrak_Controller_5Poke.ino.bin" -R'
 end
 clc;                                                                        %Clear the command line.
 cprintf('*blue','\n%s\n',cmd);                                              %Print the command in bold green.
