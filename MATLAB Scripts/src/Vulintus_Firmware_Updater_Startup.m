@@ -1,4 +1,4 @@
-function Vulintus_Firmware_Updater(varargin)
+function Vulintus_Firmware_Updater_Startup(varargin)
 
 %Vulintus_Firmware_Updater.m - Vulintus, Inc., 2021
 %
