@@ -39,15 +39,17 @@ Use the links below to jump to the instructions for updating the firmware on spe
 ---
 ### Fixing a "avrdude.exe" or "bossac.exe" is Missing Error
 
-   ![Programmer not found error message](/assets/error_programmer_not_found.png | width=100)
+   <img src="./assets/error_programmer_not_found.png" width="500">
+   <!---![Programmer not found error message](/assets/error_programmer_not_found.png)--->   
 
 If you see this error, it means that the program couldn't find the upload-control program and associated files. Often, this is caused by internet security programs blocking downloads or installation of *.exe files, and you may need administrator privileges on your computer to fix it. Here are the steps to fix this error:
 
 1. If you haven't already, download the entire "Vulintus Firmware Updates" repository (["First Steps"((#first-step_download-install-the-vulintus-firmware-updater-program)).
 Open the "utilities" folder and copy all of the files in that folder.
 
-    ![Utilities List](/assets/utilities_list.png | width=50)
-  
+   <img src="./assets/utilities_list.png" width="250">
+   <!---![Utilities List](/assets/utilities_list.png)--->   
+   
   * If you're running the program from the MATLAB script, paste those files into the same folder as " Vulintus_Firmware_Updater.m", which should be:
 
     > \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
@@ -73,7 +75,8 @@ Open the "utilities" folder and copy all of the files in that folder.
 
 1. With all three fields set, the interface will look something like this:
 
-     ![Vulintus Firmware Updater with no fields yet set](/assets/controller_ready_to_be_programmed.png | width=100)
+   <img src="./assets/controller_ready_to_be_programmed.png" width="500">
+   <!---![Controller ready to be programmed](/assets/controller_ready_to_be_programmed.png)--->
 
 2. Press the "PROGRAM" button to start programming.
     * At this point you may encounter an error message that says "ERROR: Could not find programmer bossac.exe or associated files in the current directory." If you see this error, follow [these steps](#fixing-a-avrdude.exe-or-bossac.exe-is-missing-error) to fix it.
