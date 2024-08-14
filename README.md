@@ -27,7 +27,8 @@ Use the links below to jump to the instructions for updating the firmware on spe
   
 3. In the Window that opens, you'll see three parameters you'll need to set for every Vulintus device:
 
-     ![Vulintus Firmware Updater with no fields yet set](/assets/updater_with_no_fields_set.png)
+     <img src="./assets/updater_with_no_fields_set.png" width="500">
+     <!---![Vulintus Firmware Updater with no fields yet set](/assets/updater_with_no_fields_set.png)--->
 
     * **COM Port:** Select the COM port associated with the Vulintus device you want to reprogram. If you're unsure which COM port is assigned to which device, make a note of the COM ports that are listed in the drop-down menu, and then unplug the target device's USB cable. Press the "SCAN" button to the right of the drop-down menu to refresh the COM port list. Whichever port is now not in the list is the COM port associated with your device. Plug it back in, click "SCAN" one more time, and then select that port.
      
@@ -38,15 +39,17 @@ Use the links below to jump to the instructions for updating the firmware on spe
 ---
 ### Fixing a "avrdude.exe" or "bossac.exe" is Missing Error
 
-   ![Programmer not found error message](/assets/error_programmer_not_found.png)
+   <img src="./assets/error_programmer_not_found.png" width="500">
+   <!---![Programmer not found error message](/assets/error_programmer_not_found.png)--->   
 
 If you see this error, it means that the program couldn't find the upload-control program and associated files. Often, this is caused by internet security programs blocking downloads or installation of *.exe files, and you may need administrator privileges on your computer to fix it. Here are the steps to fix this error:
 
 1. If you haven't already, download the entire "Vulintus Firmware Updates" repository (["First Steps"((#first-step_download-install-the-vulintus-firmware-updater-program)).
 Open the "utilities" folder and copy all of the files in that folder.
 
-    ![Utilities List](/assets/utilities_list.png)
-  
+   <img src="./assets/utilities_list.png" width="150">
+   <!---![Utilities List](/assets/utilities_list.png)--->   
+   
   * If you're running the program from the MATLAB script, paste those files into the same folder as " Vulintus_Firmware_Updater.m", which should be:
 
     > \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
@@ -66,52 +69,73 @@ Open the "utilities" folder and copy all of the files in that folder.
      
     * **HEX/BIN File:** The latest compiled binary of the OmniTrak Common Controller firmware can be downloaded from this link:
   
-      [OmniTrak_Controller_20240712.bin](#/compiled_binaries/OmniTrak_Controller_20240712.bin)
-     
+      [OmniTrak_Controller_20240712.bin](compiled_binaries/OmniTrak/OmniTrak_Controller_20240712.bin?raw=1)
+
     * **Programmer:** For the OmniTrak Common Controller, select "bossac.exe".
 
-2. With all three fields set, the interface will look something like this:
+1. With all three fields set, the interface will look something like this:
 
-     ![Vulintus Firmware Updater with no fields yet set](/assets/controller_ready_to_be_programmed.png)
+   <img src="./assets/controller_ready_to_be_programmed.png" width="500">
+   <!---![Controller ready to be programmed](/assets/controller_ready_to_be_programmed.png)--->
 
-3. Press the "PROGRAM" button to start programming.
+2. Press the "PROGRAM" button to start programming.
     * At this point you may encounter an error message that says "ERROR: Could not find programmer bossac.exe or associated files in the current directory." If you see this error, follow [these steps](#fixing-a-avrdude.exe-or-bossac.exe-is-missing-error) to fix it.
 
-4. If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message that looks like this:
+3. If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message that looks like this:
 
-     ![Controller successfully programmed](/assets/controller_ready_to_be_programmed.png)
-
+   <img src="./assets/controller_successfully_programmed.png" width="500">
+   <!---![Controller successfully programmed](/assets/controller_successfully_programmed.png)--->
+     
 ---
 ### Updating the Firmware on the OmniTrak Nosepoke Module (OT-NP)
 
 1. To update the OmniTrak Nosepoke Module firmware, we'll again use the Vulintus Firmware Updater program. If you haven't downloaded/installed the Vulintus Firmware Updater program, go back to ["First Steps"((#first-step_download-install-the-vulintus-firmware-updater-program).
 
-2. The procedure to program the nosepokes is a little more complicated than for the OmniTrak Controller, because we have to program them through the Controller. To do this, we'll need to set up the OmniTrak Controller to act as a relay by temporarily uploading some specialized firmware to it. Download "OmniTrak_Controller_Serial_Relay_20240712.bin" file, and follow all the same steps above to upload it to the OmniTrak Controller.
-Next, keeping the "Vulintus Firmware Updater" program open, keep the COM port set to the OmniTrak Controller, but change the "HEX/BIN File:" to the attached "OmniTrak_Nosepoke_V3_20240712.hex".
-Finally, change the programmer to "avrdude.exe". The program should now look something like this:
+2. The procedure to program the nosepokes is a little more complicated than for the OmniTrak Controller, because we have to program them through the Controller. To do this, we'll need to set up the OmniTrak Controller to act as a relay by temporarily uploading some specialized firmware to it. Open the Vulintus Firmware Updater program and set the fields as follows.
 
-image.png
+    * **COM Port:** Select the COM port associated with the OmniTrak Common Controller that the Nosepoke module is connected to.
+     
+    * **HEX/BIN File:** Download this specialized "Serial Relay" firmware for the OmniTrak Common Controller:
+  
+      [OmniTrak_Controller_Serial_Relay_20240712.bin](compiled_binaries/OmniTrak/OmniTrak_Controller_Serial_Relay_20240712.bin?raw=1)
+     
+    * **Programmer:** Since we're first reprogramming the the OmniTrak Common Controller, select "bossac.exe".
+  
+3. Press the "PROGRAM" button to start programming.
+    * At this point you may encounter an error message that says "ERROR: Could not find programmer bossac.exe or associated files in the current directory." If you see this error, follow [these steps](#fixing-a-avrdude.exe-or-bossac.exe-is-missing-error) to fix it.
 
-Next, if you have multiple nosepokes connected to the OmniTrak Controller, we'll need to program them one at a time. You'll select the target nosepoke by rotating the encoder dial on the front of the controller to highlight the target port, which will be shown with a yellow border on the display screen like so:
+4. If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message.
 
-PXL_20240801_171707508.jpg
+5. Next, keeping the "Vulintus Firmware Updater" program open, keep the COM port set to the selected OmniTrak Common Controller, but change the "HEX/BIN File:" to the latest compiled binary for the OmniTrak Nosepoke Module, which can be downloaded from this link:
 
-You're ready to program, but now comes the tricky part. We need to reset the nosepoke microcontroller right as the upload starts so that it enters a bootloader mode. The reset button on the nosepoke / pellet receiver is located here, just below the ethernet style connector:
+      [OmniTrak_Nosepoke_V3_20240712.bin](compiled_binaries/OmniTrak/OmniTrak_Nosepoke_V3_20240712.hex?raw=1)
+   
+6. Finally, change the programmer to "avrdude.exe". The program should now look something like this:
 
-PXL_20240801_171827324.jpg
+   <img src="./assets/nosepoke_ready_to_be_programmed.png" width="500">
+   <!---![Nosepoke ready to be programmed](/assets/nosepoke_ready_to_be_programmed.png)--->
 
-Now, press the "PROGRAM" button on the "Vulintus Firmware Updater" program, and press the reset button on the nosepoke at the same time or just slightly afterwards. There's a grace period of ~half a second. 
-If the timing was correct, you should see text in the message box on the program ending in:
+7. Next, if you have multiple nosepokes connected to the OmniTrak Controller, we'll need to program them one at a time. You'll select the target nosepoke by rotating the encoder dial on the front of the controller to highlight the target port, which will be shown with a yellow border on the display screen like so:
 
-"avrdude.exe done. Thank you."
+    <img src="./assets/serial_relay_select_target_port.jpg" width="250">
+    <!---![Serial relay select target port](/assets/serial_relay_select_target_port.jpg)--->    
 
-Great! The nosepoke is reprogrammed and you can move on to the next one.
-If the timing was incorrect, you'll see a series of messages that say:
+8. You're ready to program, but now comes the tricky part. We need to reset the nosepoke microcontroller right as the upload starts so that it enters a bootloader mode. The reset button on the nosepoke / pellet receiver is located here, just below the ethernet style connector:
 
-"avrdude.exe: stk500_getsync() attempt 10 of 10: not in sync: resp = 0x00"
+    <img src="./assets/nosepoke_reset_button.png" width="250">
+    <!---![Nosepoke reset button](/assets/nosepoke_reset_button.png)--->    
 
-If you see those messages, just try pressing the "PROGRAM" button and reset button at the same time again, there's nothing bad that happens if it misses the bootloader window.
-If you've successfully programmed one nosepoke, all you need to do to program another one is to change the target port on the OmniTrak Controller. You can leave all settings the same on the "Vulintus Firmware Updater" program. Just make sure you're pressing the reset button on the nosepoke that corresponds to the selected port.
-Finally, repeat the steps above to put the "OmniTrak_Controller_20240712.bin" firmware back on the OmniTrak Controller.
+9. Now, press the "PROGRAM" button on the "Vulintus Firmware Updater" program, and press the reset button on the nosepoke at the same time or just slightly afterwards. There's a grace period of ~half a second. 
+    * If the timing was correct, you should see text in the message box on the program ending in:
 
-Whew, okay, that was a lot to type, but I hope it covers all the bases. Try it out and let me know if you run into any issues.
+        > "avrdude.exe done. Thank you."
+
+    * If the timing was incorrect, you'll see a series of messages that say:
+
+          > "avrdude.exe: stk500_getsync() attempt 10 of 10: not in sync: resp = 0x00"
+
+      If you see those messages, just try pressing the "PROGRAM" button and reset button at the same time again, there's nothing bad that happens if it misses the bootloader window.
+
+10. Great! The nosepoke is reprogrammed and you can move on to the next one. If you've successfully programmed one nosepoke, all you need to do to program another one is to change the target port on the OmniTrak Controller. You can leave all settings the same on the "Vulintus Firmware Updater" program. Just make sure you're pressing the reset button on the nosepoke that corresponds to the selected port.
+
+11. Finally, we'll need to take the specialized "Serial Relay" firmware off of the OmniTrak Common Controller and put back on the correct, up-to-date firmware. Follow [these steps](#updating-the-firmware-on-the-omniTrak-common-controller-ot-cc) to put the standard firmware back on the OmniTrak Common Controller.
