@@ -8,9 +8,9 @@ This page will guide through the process of updating the firmware on Vulintus de
 
 1. The first step for updating the firmware on any Vulintus device is to download and install the Vulintus Firmware Updater program. The program is written in MATLAB, and can be run either as a MATLAB script or, if you don't have MATLAB on the updating computer, it can be installed like any other Windows-based program.
 
-  * To run the Firmware Updater as a MATLAB script, you'll need to download the scripts from this repository, which you can do by clicking the "<> Code" button on the main page and selecting "Download ZIP" or by cloning the repository to your computer using Git.
+     * To run the Firmware Updater as a MATLAB script, you'll need to download the scripts from this repository, which you can do by clicking the "<> Code" button on the main page and selecting "Download ZIP" or by cloning the repository to your computer using Git.
 
-  * To install the Firmware Updater as a typical Windows program, download the installer from this link, launch the installer, and then follow the prompts to install it. To find the program once it's installed, search for "Vulintus Firmware Updater" in the windows search bar, and you should see it. It's helpful to create a desktop shortcut for the program.
+     * To install the Firmware Updater as a typical Windows program, download the installer from this link, launch the installer, and then follow the prompts to install it. To find the program once it's installed, search for "Vulintus Firmware Updater" in the windows search bar, and you should see it. It's helpful to create a desktop shortcut for the program.
 Start up the Firmware Updater Program.
 
 ---
