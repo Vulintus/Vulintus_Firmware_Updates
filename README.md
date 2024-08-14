@@ -66,7 +66,7 @@ Open the "utilities" folder and copy all of the files in that folder.
      
     * **HEX/BIN File:** The latest compiled binary of the OmniTrak Common Controller firmware can be downloaded from this link:
   
-      [OmniTrak_Controller_20240712.bin](raw/main/compiled_binaries/OmniTrak/OmniTrak_Controller_20240712.bin)
+      [OmniTrak_Controller_20240712.bin](compiled_binaries/OmniTrak/OmniTrak_Controller_20240712.bin?raw=1)
 
     * **Programmer:** For the OmniTrak Common Controller, select "bossac.exe".
 
