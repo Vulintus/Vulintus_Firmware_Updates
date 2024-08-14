@@ -66,7 +66,7 @@ Open the "utilities" folder and copy all of the files in that folder.
      
     * **HEX/BIN File:** The latest compiled binary of the OmniTrak Common Controller firmware can be downloaded from this link:
   
-      [OmniTrak_Controller_20240712.bin](compiled_binaries/OmniTrak_Controller_20240712.bin)
+      [OmniTrak_Controller_20240712.bin](compiled_binaries/OmniTrak/OmniTrak_Controller_20240712.bin)
      
     * **Programmer:** For the OmniTrak Common Controller, select "bossac.exe".
 
@@ -86,29 +86,46 @@ Open the "utilities" folder and copy all of the files in that folder.
 
 1. To update the OmniTrak Nosepoke Module firmware, we'll again use the Vulintus Firmware Updater program. If you haven't downloaded/installed the Vulintus Firmware Updater program, go back to ["First Steps"((#first-step_download-install-the-vulintus-firmware-updater-program).
 
-2. The procedure to program the nosepokes is a little more complicated than for the OmniTrak Controller, because we have to program them through the Controller. To do this, we'll need to set up the OmniTrak Controller to act as a relay by temporarily uploading some specialized firmware to it. Download "OmniTrak_Controller_Serial_Relay_20240712.bin" file, and follow all the same steps above to upload it to the OmniTrak Controller.
-Next, keeping the "Vulintus Firmware Updater" program open, keep the COM port set to the OmniTrak Controller, but change the "HEX/BIN File:" to the attached "OmniTrak_Nosepoke_V3_20240712.hex".
-Finally, change the programmer to "avrdude.exe". The program should now look something like this:
+2. The procedure to program the nosepokes is a little more complicated than for the OmniTrak Controller, because we have to program them through the Controller. To do this, we'll need to set up the OmniTrak Controller to act as a relay by temporarily uploading some specialized firmware to it. Open the Vulintus Firmware Updater program and set the fields as follows.
+
+    * **COM Port:** Select the COM port associated with the OmniTrak Common Controller that the Nosepoke module is connected to.
+     
+    * **HEX/BIN File:** Download this specialized "Serial Relay" firmware for the OmniTrak Common Controller:
+  
+      [OmniTrak_Controller_Serial_Relay_20240712.bin](compiled_binaries/OmniTrak/OmniTrak_Controller_Serial_Relay_20240712.bin)
+     
+    * **Programmer:** Since we're first reprogramming the the OmniTrak Common Controller, select "bossac.exe".
+  
+3. Press the "PROGRAM" button to start programming.
+    * At this point you may encounter an error message that says "ERROR: Could not find programmer bossac.exe or associated files in the current directory." If you see this error, follow [these steps](#fixing-a-avrdude.exe-or-bossac.exe-is-missing-error) to fix it.
+
+4. If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message.
+
+5. Next, keeping the "Vulintus Firmware Updater" program open, keep the COM port set to the selected OmniTrak Common Controller, but change the "HEX/BIN File:" to the latest compiled binary for the OmniTrak Nosepoke Module, which can be downloaded from this link:
+
+      [OmniTrak_Nosepoke_V3_20240712.bin](compiled_binaries/OmniTrak/OmniTrak_Nosepoke_V3_20240712.hex)
+   
+6. Finally, change the programmer to "avrdude.exe". The program should now look something like this:
 
 image.png
 
-Next, if you have multiple nosepokes connected to the OmniTrak Controller, we'll need to program them one at a time. You'll select the target nosepoke by rotating the encoder dial on the front of the controller to highlight the target port, which will be shown with a yellow border on the display screen like so:
+7. Next, if you have multiple nosepokes connected to the OmniTrak Controller, we'll need to program them one at a time. You'll select the target nosepoke by rotating the encoder dial on the front of the controller to highlight the target port, which will be shown with a yellow border on the display screen like so:
 
 PXL_20240801_171707508.jpg
 
-You're ready to program, but now comes the tricky part. We need to reset the nosepoke microcontroller right as the upload starts so that it enters a bootloader mode. The reset button on the nosepoke / pellet receiver is located here, just below the ethernet style connector:
+8. You're ready to program, but now comes the tricky part. We need to reset the nosepoke microcontroller right as the upload starts so that it enters a bootloader mode. The reset button on the nosepoke / pellet receiver is located here, just below the ethernet style connector:
 
 PXL_20240801_171827324.jpg
 
-Now, press the "PROGRAM" button on the "Vulintus Firmware Updater" program, and press the reset button on the nosepoke at the same time or just slightly afterwards. There's a grace period of ~half a second. 
+9. Now, press the "PROGRAM" button on the "Vulintus Firmware Updater" program, and press the reset button on the nosepoke at the same time or just slightly afterwards. There's a grace period of ~half a second. 
 If the timing was correct, you should see text in the message box on the program ending in:
 
 "avrdude.exe done. Thank you."
 
-Great! The nosepoke is reprogrammed and you can move on to the next one.
-If the timing was incorrect, you'll see a series of messages that say:
+10. Great! The nosepoke is reprogrammed and you can move on to the next one.
+    * If the timing was incorrect, you'll see a series of messages that say:
 
-"avrdude.exe: stk500_getsync() attempt 10 of 10: not in sync: resp = 0x00"
+    "avrdude.exe: stk500_getsync() attempt 10 of 10: not in sync: resp = 0x00"
 
 If you see those messages, just try pressing the "PROGRAM" button and reset button at the same time again, there's nothing bad that happens if it misses the bootloader window.
 If you've successfully programmed one nosepoke, all you need to do to program another one is to change the target port on the OmniTrak Controller. You can leave all settings the same on the "Vulintus Firmware Updater" program. Just make sure you're pressing the reset button on the nosepoke that corresponds to the selected port.
