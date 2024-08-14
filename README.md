@@ -35,9 +35,9 @@ This page will guide through the process of updating the firmware on Vulintus de
 
 Use the links below to jump to the instructions for updating the firmware on specific Vulintus devices:
 
-* [OmniTrak Common Controller (OT-CC)](#updating-the-firmware-on-the-omniTrak-common-controller-(0t-cc))
+* [OmniTrak Common Controller (OT-CC)](#updating-the-firmware-on-the-omniTrak-common-controller-ot-cc)
     
-* [OmniTrak Nosepoke Module (OT-NP)](#updating-the-firmware-on-the-omniTrak-nosepoke-module-(ot-np))
+* [OmniTrak Nosepoke Module (OT-NP)](#updating-the-firmware-on-the-omniTrak-nosepoke-module-ot-np)
     
 ---
 ### Updating the Firmware on the OmniTrak Common Controller (OT-CC)
