@@ -31,6 +31,12 @@ This page will guide through the process of updating the firmware on Vulintus de
      * **Programmer:** Vulintus uses two types of microcontrollers in our devices, and each requires a different upload-control program. For the OmniTrak Controller, select "bossac.exe".
 
 ---
+## Vulintus Device List
+
+Use the links below to jump to the instructions for updating the firmware on specific Vulintus devices:
+    * [OmniTrak Common Controller (OT-CC)](#Updating_the_Firmware_on_the_OmniTrak_Common_Controller_(OT-CC))
+    * OmniTrak Nosepoke Module (OT-NP)
+---
 ### Updating the Firmware on the OmniTrak Common Controller (OT-CC)
 
 
