@@ -64,7 +64,9 @@ Open the "utilities" folder and copy all of the files in that folder.
 
     * **COM Port:** Select the COM port associated with the OmniTrak CommonController you want to reprogram.
      
-    * **HEX/BIN File:** The latest compiled binary of the OmniTrak Common Controller firmware can be downloaded from this link.
+    * **HEX/BIN File:** The latest compiled binary of the OmniTrak Common Controller firmware can be downloaded from this link:
+  
+      [OmniTrak_Controller_20240712.bin](#/compiled_binaries/OmniTrak_Controller_20240712.bin)
      
     * **Programmer:** For the OmniTrak Common Controller, select "bossac.exe".
 
@@ -82,8 +84,9 @@ Open the "utilities" folder and copy all of the files in that folder.
 ---
 ### Updating the Firmware on the OmniTrak Nosepoke Module (OT-NP)
 
-We're going to use the same "Vulintus Firmware Updater" program that we used for the OmniTrak Controller, so follow steps #1 and #2 above to download and install it.
-The procedure to program the nosepokes is a little more complicated than for the OmniTrak Controller, because we have to program them through the Controller. To do this, we'll need to set up the OmniTrak Controller to act as a relay by temporarily uploading some specialized firmware to it. Download the attached "OmniTrak_Controller_Serial_Relay_20240712.bin" file, and follow all the same steps above to upload it to the OmniTrak Controller.
+1. To update the OmniTrak Nosepoke Module firmware, we'll again use the Vulintus Firmware Updater program. If you haven't downloaded/installed the Vulintus Firmware Updater program, go back to ["First Steps"((#first-step_download-install-the-vulintus-firmware-updater-program).
+
+2. The procedure to program the nosepokes is a little more complicated than for the OmniTrak Controller, because we have to program them through the Controller. To do this, we'll need to set up the OmniTrak Controller to act as a relay by temporarily uploading some specialized firmware to it. Download "OmniTrak_Controller_Serial_Relay_20240712.bin" file, and follow all the same steps above to upload it to the OmniTrak Controller.
 Next, keeping the "Vulintus Firmware Updater" program open, keep the COM port set to the OmniTrak Controller, but change the "HEX/BIN File:" to the attached "OmniTrak_Nosepoke_V3_20240712.hex".
 Finally, change the programmer to "avrdude.exe". The program should now look something like this:
 
