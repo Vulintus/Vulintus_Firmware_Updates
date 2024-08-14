@@ -38,21 +38,20 @@ Use the links below to jump to the instructions for updating the firmware on spe
 ---
 ### Updating the Firmware on the OmniTrak Common Controller (OT-CC)
 
+1. Open the Vulintus Firmware Updater program and set the fields as follows. If you haven't downloaded/installed the Vulintus Firmware Updater program, go back to ["First Steps"((#first-step_download-install-the-vulintus-firmware-updater-program).
 
+    * **COM Port:** Select the COM port associated with the OmniTrak CommonController you want to reprogram.
+     
+    * **HEX/BIN File:** The latest compiled binary of the OmniTrak Common Controller firmware can be downloaded from this link.
+     
+    * **Programmer:** For the OmniTrak Common Controller, select "bossac.exe".
 
-In the Window that opens, you'll see three parameters you'll need to set:
+2. With all three fields set, the interface will look something like this:
 
-image.png
+     ![Vulintus Firmware Updater with no fields yet set](/assets/controller_ready_to_be_programmed.png)
 
-COM Port: Select the COM port associated with the OmniTrak Controller you want to reprogram. If you're unsure which COM port is assigned to which controller, make a note of the COM ports that are listed in the drop-down menu, and then unplug the target controller's USB cable. Press the "SCAN" button to the right of the drop-down menu to refresh the COM port list. Whichever port is now not in the list is the COM port associated with your controller. Plug it back in, click "SCAN" one more time, and then select that port.
-HEX/BIN File: Firmware updates are provided as compiled binary files. The files you'll need are attached to this email. In the future, we'll keep the latest firmware updates in the Vulintus Fimware Updates repository, so they will download automatically when you download the MATLAB scripts or install the compiled program. Download the "OmniTrak_Controller_20240712.bin" file attached to this email and click the "LOAD" button to locate and select it for the firmware update.
-Programmer: Vulintus uses two types of microcontrollers in our devices, and each requires a different upload-control program. For the OmniTrak Controller, select "bossac.exe".
-With all three fields set, the interface will look something like this:
-
-image.png
-
-Press the "PROGRAM" button to start programming.
-At this point you may encounter an error message that looks like this:
+3. Press the "PROGRAM" button to start programming.
+    * At this point you may encounter an error message that says "ERROR: Could not find programmer bossac.exe or associated files in the current directory." If you see this error, looks like this:
 
 image.png
 
