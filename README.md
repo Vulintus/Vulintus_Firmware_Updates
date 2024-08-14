@@ -47,7 +47,7 @@ If you see this error, it means that the program couldn't find the upload-contro
 1. If you haven't already, download the entire "Vulintus Firmware Updates" repository (["First Steps"((#first-step_download-install-the-vulintus-firmware-updater-program)).
 Open the "utilities" folder and copy all of the files in that folder.
 
-   <img src="./assets/utilities_list.png" width="250">
+   <img src="./assets/utilities_list.png" width="150">
    <!---![Utilities List](/assets/utilities_list.png)--->   
    
   * If you're running the program from the MATLAB script, paste those files into the same folder as " Vulintus_Firmware_Updater.m", which should be:
@@ -83,8 +83,9 @@ Open the "utilities" folder and copy all of the files in that folder.
 
 3. If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message that looks like this:
 
-     ![Controller successfully programmed](/assets/controller_successfully_programmed.png | width=100)
-
+   <img src="./assets/controller_successfully_programmed.png" width="500">
+   <!---![Controller successfully programmed](/assets/controller_successfully_programmed.png)--->
+     
 ---
 ### Updating the Firmware on the OmniTrak Nosepoke Module (OT-NP)
 
@@ -111,24 +112,27 @@ Open the "utilities" folder and copy all of the files in that folder.
    
 6. Finally, change the programmer to "avrdude.exe". The program should now look something like this:
 
-     ![Nosepoke ready to be programmed](/assets/nosepoke_ready_to_be_programmed.png | width=100)
+   <img src="./assets/nosepoke_ready_to_be_programmed.png" width="500">
+   <!---![Nosepoke ready to be programmed](/assets/nosepoke_ready_to_be_programmed.png)--->
 
 7. Next, if you have multiple nosepokes connected to the OmniTrak Controller, we'll need to program them one at a time. You'll select the target nosepoke by rotating the encoder dial on the front of the controller to highlight the target port, which will be shown with a yellow border on the display screen like so:
 
-     ![Serial relay select target port](/assets/serial_relay_select_target_port.jpg | width=50)
+    <img src="./assets/serial_relay_select_target_port.jpg" width="200">
+    <!---![Serial relay select target port](/assets/serial_relay_select_target_port.jpg)--->    
 
 8. You're ready to program, but now comes the tricky part. We need to reset the nosepoke microcontroller right as the upload starts so that it enters a bootloader mode. The reset button on the nosepoke / pellet receiver is located here, just below the ethernet style connector:
 
-     ![Nosepoke reset button](/assets/nosepoke_reset_button.png)
+    <img src="./assets/nosepoke_reset_button.png" width="200">
+    <!---![Nosepoke reset button](/assets/nosepoke_reset_button.png)--->    
 
 9. Now, press the "PROGRAM" button on the "Vulintus Firmware Updater" program, and press the reset button on the nosepoke at the same time or just slightly afterwards. There's a grace period of ~half a second. 
     * If the timing was correct, you should see text in the message box on the program ending in:
 
-      > "avrdude.exe done. Thank you."
+        > "avrdude.exe done. Thank you."
 
     * If the timing was incorrect, you'll see a series of messages that say:
 
-      > "avrdude.exe: stk500_getsync() attempt 10 of 10: not in sync: resp = 0x00"
+          > "avrdude.exe: stk500_getsync() attempt 10 of 10: not in sync: resp = 0x00"
 
       If you see those messages, just try pressing the "PROGRAM" button and reset button at the same time again, there's nothing bad that happens if it misses the bootloader window.
 
