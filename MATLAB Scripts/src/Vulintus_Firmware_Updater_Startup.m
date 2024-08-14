@@ -12,15 +12,75 @@ function Vulintus_Firmware_Updater_Startup(varargin)
 %   2021-??-?? - Drew Sloan - Function first created.
 %
 
+
+%% Set the download URLs for avrdude.exe, bossac.exe, avrdude.conf, and libusb0.dll.
+utility_list = {'avrdude.exe','bossac.exe','avrdude.conf','libusb0.dll'};   %List the required utilities programs/files.
+utility_file = cell(size(utility_list));                                    %Create an empty cell array to the full filenames for utilities.
+utility_url = {
+    'https://github.com/Vulintus/Vulintus_Firmware_Updates/raw/main/utilities/avrdude.exe';
+    'https://github.com/Vulintus/Vulintus_Firmware_Updates/raw/main/utilities/bossac.exe';
+    'https://github.com/Vulintus/Vulintus_Firmware_Updates/raw/main/utilities/avrdude.conf';
+    'https://github.com/Vulintus/Vulintus_Firmware_Updates/raw/main/utilities/libusb0.dll';
+};                                                                          %Set the Github download links for the required utilities.
+
+
 %% Clean up the workspace.
 close all force;                                                            %Close any open figures.
 fclose all;                                                                 %Close any open data files.
-
 
 %% Check for required toolboxes.
 if ~Vulintus_Check_MATLAB_Toolboxes('Instrument Control Toolbox')           %If the instrument control toolbox isn't installed...
     return                                                                  %Skip execution of the rest of the function.
 end
+
+%% Check for the required utility functions and files.
+if isdeployed                                                               %If this is compiled code...
+    utility_path = pwd;                                                     %Look for the utility programs and files in the main folder.
+else                                                                        %Otherwise...
+    [utility_path, ~, ~] = fileparts(which(mfilename));                     %Grab the path for the current mfile.
+    i = strfind(utility_path,'\MATLAB Scripts');                            %Look for the "MATLAB Scripts" folder in the path.
+    if ~isempty(i)                                                          %If the "MATLAB Scripts" folder was found...
+        temp = fullfile(utility_path(1:i),'utilities');                     %Create the expected path to the utilities folder.
+        if exist(temp,'dir')                                                %If the utilities folder exists...
+            utility_path = temp;                                            %Check in that folder for the require utilities.
+        end
+    end
+end
+utility_exists = true(size(utility_list));                                  %Create a logical array to check for required utilities.
+for i = 1:length(utility_list)                                              %Step through each required utility program/file.
+    utility_file{i} = fullfile(utility_path,utility_list{i});                       %Create the expected filename with path.
+    if exist(utility_file{i},'file')                                        %If the file exists...
+        continue                                                            %Skip to the next utility.
+    end
+    temp = which(utility_list{i});                                          %Check to see if the utility exists elsewhere in the search path.
+    if ~isempty(temp)                                                       %If the utility was found...
+        utility_file{i} = temp;                                             %Save the full utility filename.
+        continue                                                            %Skip to the next utility.
+    end
+    utility_exists(i) = false;                                              %If we made it this far, mark the utility as missing.
+end
+if any(utility_exists == false)                                             %If any of the utilities are missing...
+    for i = 1:length(utility_list)                                          %Step through each required utility program/file.
+        if utility_exists(i) == false                                       %If the utility wasn't found...
+            try                                                             %Attempt to download the utility program/file.
+                temp = websave(utility_file{i},utility_url{i});             %Download the program/file.
+                if ~isempty(temp)                                           %If the download was successful...
+                    utility_exists(i) = true;                               %Indicate the utility now exists.
+                end                
+            catch err                                                       %If there's an error...
+                warning(['%s -> Could not download utility program/file'...
+                    ' "%s%!\n\t%s:%s'], upper(mfilename),...
+                    utility_list{i}, err.identifier, err.message);          %Show a warning.
+            end
+        end
+    end
+end
+if any(utility_exists == false)                                             %If any of the utilities are still missing...
+    
+end
+
+
+
 
 [port, description] = Scan_COM_Ports('Checking for Vulintus devices');      %Scan the COM ports.
 
