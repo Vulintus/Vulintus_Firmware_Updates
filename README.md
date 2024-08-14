@@ -16,7 +16,7 @@ This page will guide through the process of updating the firmware on Vulintus de
 
      * If using the MATLAB script, the script is located in the downloaded files under:
 
-     > \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
+         > \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
 
      * If using the compiled program, search for "Vulintus_Firmware_Updater" in the Windows search bar to locate the program.
   
