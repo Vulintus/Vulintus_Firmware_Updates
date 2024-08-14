@@ -11,16 +11,29 @@ This page will guide through the process of updating the firmware on Vulintus de
      * To run the Firmware Updater as a MATLAB script, you'll need to download the scripts from this repository, which you can do by clicking the "<> Code" button on the main page and selecting "Download ZIP" or by cloning the repository to your computer using Git.
 
      * To install the Firmware Updater as a typical Windows program, download the installer from this link, launch the installer, and then follow the prompts to install it. To find the program once it's installed, search for "Vulintus Firmware Updater" in the windows search bar, and you should see it. It's helpful to create a desktop shortcut for the program.
-Start up the Firmware Updater Program.
+
+2. Start up the Firmware Updater Program.
+
+     * If using the MATLAB script, the script is located in the downloaded files under:
+
+     \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
+
+     * If using the compiled program, search for "Vulintus_Firmware_Updater" in the Windows search bar to locate the program.
+  
+3. In the Window that opens, you'll see three parameters you'll need to set for every Vulintus device:
+
+image.png
+
+     * **COM Port:** Select the COM port associated with the OmniTrak Controller you want to reprogram. If you're unsure which COM port is assigned to which controller, make a note of the COM ports that are listed in the drop-down menu, and then unplug the target controller's USB cable. Press the "SCAN" button to the right of the drop-down menu to refresh the COM port list. Whichever port is now not in the list is the COM port associated with your controller. Plug it back in, click "SCAN" one more time, and then select that port.
+     
+     * **HEX/BIN File:** Firmware updates are provided as compiled binary files. The files you'll need are attached to this email. In the future, we'll keep the latest firmware updates in the Vulintus Fimware Updates repository, so they will download automatically when you download the MATLAB scripts or install the compiled program. Download the "OmniTrak_Controller_20240712.bin" file attached to this email and click the "LOAD" button to locate and select it for the firmware update.
+     
+     * **Programmer:** Vulintus uses two types of microcontrollers in our devices, and each requires a different upload-control program. For the OmniTrak Controller, select "bossac.exe".
 
 ---
 ### Updating the Firmware on the OmniTrak Common Controller (OT-CC)
 
-If using the MATLAB script, the script is located in the downloaded files under:
 
-     \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
-
-If using the compiled program, search for "Vulintus_Firmware_Updater" in the Windows search bar to locate the program.
 
 In the Window that opens, you'll see three parameters you'll need to set:
 
