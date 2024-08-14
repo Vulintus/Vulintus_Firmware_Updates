@@ -122,8 +122,8 @@ Open the "utilities" folder and copy all of the files in that folder.
 
 8. You're ready to program, but now comes the tricky part. We need to reset the nosepoke microcontroller right as the upload starts so that it enters a bootloader mode. The reset button on the nosepoke / pellet receiver is located here, just below the ethernet style connector:
 
-    <img src="./assets/nosepoke_reset_button.png" width="250">
-    <!---![Nosepoke reset button](/assets/nosepoke_reset_button.png)--->    
+    <img src="./assets/nosepoke_reset_button.jpg" width="250">
+    <!---![Nosepoke reset button](/assets/nosepoke_reset_button.jpg)--->    
 
 9. Now, press the "PROGRAM" button on the "Vulintus Firmware Updater" program, and press the reset button on the nosepoke at the same time or just slightly afterwards. There's a grace period of ~half a second. 
     * If the timing was correct, you should see text in the message box on the program ending in:
@@ -132,7 +132,7 @@ Open the "utilities" folder and copy all of the files in that folder.
 
     * If the timing was incorrect, you'll see a series of messages that say:
 
-          > "avrdude.exe: stk500_getsync() attempt 10 of 10: not in sync: resp = 0x00"
+        > "avrdude.exe: stk500_getsync() attempt 10 of 10: not in sync: resp = 0x00"
 
       If you see those messages, just try pressing the "PROGRAM" button and reset button at the same time again, there's nothing bad that happens if it misses the bootloader window.
 
