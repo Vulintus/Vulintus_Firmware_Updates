@@ -8,27 +8,27 @@ This page will guide through the process of updating the firmware on Vulintus de
 
 1. The first step for updating the firmware on any Vulintus device is to download and install the Vulintus Firmware Updater program. The program is written in MATLAB, and can be run either as a MATLAB script or, if you don't have MATLAB on the updating computer, it can be installed like any other Windows-based program.
 
-     * To run the Firmware Updater as a MATLAB script, you'll need to download the scripts from this repository, which you can do by clicking the "<> Code" button on the main page and selecting "Download ZIP" or by cloning the repository to your computer using Git.
+    * To run the Firmware Updater as a MATLAB script, you'll need to download the scripts from this repository, which you can do by clicking the "<> Code" button on the main page and selecting "Download ZIP" or by cloning the repository to your computer using Git.
 
-     * To install the Firmware Updater as a typical Windows program, download the installer from this link, launch the installer, and then follow the prompts to install it. To find the program once it's installed, search for "Vulintus Firmware Updater" in the windows search bar, and you should see it. It's helpful to create a desktop shortcut for the program.
+    * To install the Firmware Updater as a typical Windows program, download the installer from this link, launch the installer, and then follow the prompts to install it. To find the program once it's installed, search for "Vulintus Firmware Updater" in the windows search bar, and you should see it. It's helpful to create a desktop shortcut for the program.
 
 2. Start up the Firmware Updater Program.
 
-     * If using the MATLAB script, the script is located in the downloaded files under:
+    * If using the MATLAB script, the script is located in the downloaded files under:
 
-         > \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
+        > \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
 
-     * If using the compiled program, search for "Vulintus_Firmware_Updater" in the Windows search bar to locate the program.
+    * If using the compiled program, search for "Vulintus_Firmware_Updater" in the Windows search bar to locate the program.
   
 3. In the Window that opens, you'll see three parameters you'll need to set for every Vulintus device:
 
-    ![Vulintus Firmware Updater with no fields yet set](/assets/updater_with_no_fields_set.png)
+        ![Vulintus Firmware Updater with no fields yet set](/assets/updater_with_no_fields_set.png)
 
-     * **COM Port:** Select the COM port associated with the OmniTrak Controller you want to reprogram. If you're unsure which COM port is assigned to which controller, make a note of the COM ports that are listed in the drop-down menu, and then unplug the target controller's USB cable. Press the "SCAN" button to the right of the drop-down menu to refresh the COM port list. Whichever port is now not in the list is the COM port associated with your controller. Plug it back in, click "SCAN" one more time, and then select that port.
+    * **COM Port:** Select the COM port associated with the Vulintus device you want to reprogram. If you're unsure which COM port is assigned to which device, make a note of the COM ports that are listed in the drop-down menu, and then unplug the target device's USB cable. Press the "SCAN" button to the right of the drop-down menu to refresh the COM port list. Whichever port is now not in the list is the COM port associated with your device. Plug it back in, click "SCAN" one more time, and then select that port.
      
-     * **HEX/BIN File:** Firmware updates are provided as compiled binary files. The files you'll need are attached to this email. In the future, we'll keep the latest firmware updates in the Vulintus Fimware Updates repository, so they will download automatically when you download the MATLAB scripts or install the compiled program. Download the "OmniTrak_Controller_20240712.bin" file attached to this email and click the "LOAD" button to locate and select it for the firmware update.
+    * **HEX/BIN File:** Firmware updates for each Vulintus device are provided as compiled binary files in the "compiled_binaries" folder in this repository.
      
-     * **Programmer:** Vulintus uses two types of microcontrollers in our devices, and each requires a different upload-control program. For the OmniTrak Controller, select "bossac.exe".
+    * **Programmer:** Vulintus uses two types of microcontrollers in our devices, and each requires a different upload-control program: avrdude.exe or bossac.exe.
 
 ---
 ## Vulintus Device List
@@ -37,7 +37,7 @@ Use the links below to jump to the instructions for updating the firmware on spe
 
 * [OmniTrak Common Controller (OT-CC)](#Updating-the-Firmware-on-the-OmniTrak-Common-Controller-(OT-CC))
     
-* OmniTrak Nosepoke Module (OT-NP)
+* [OmniTrak Nosepoke Module (OT-NP)](#Updating-the-Firmware-on-the-OmniTrak-Nosepoke-Module-(OT-NP))
     
 ---
 ### Updating the Firmware on the OmniTrak Common Controller (OT-CC)
