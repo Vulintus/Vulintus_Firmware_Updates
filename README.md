@@ -34,7 +34,30 @@ Use the links below to jump to the instructions for updating the firmware on spe
     * **HEX/BIN File:** Firmware updates for each Vulintus device are provided as compiled binary files in the "compiled_binaries" folder in this repository.
      
     * **Programmer:** Vulintus uses two types of microcontrollers in our devices, and each requires a different upload-control program: avrdude.exe or bossac.exe.
-    
+
+---
+### Fixing a "avrdude.exe" or "bossac.exe" is Missing Error
+
+  ![Programmer not found error message](/assets/error_programmer_not_found.png)
+
+If you see this error, it means that the program couldn't find the upload-control program and associated files. Often, this is caused by internet security programs blocking downloads or installation of *.exe files, and you may need administrator privileges on your computer to fix it. Here are the steps to fix this error:
+
+1. If you haven't already, download the entire "Vulintus Firmware Updates" repository (["First Steps"((#first-step_download-install-the-vulintus-firmware-updater-program)).
+Open the "utilities" folder and copy all of the files in that folder.
+
+  ![Utilities List](/assets/utilities_list.png)
+  
+If you're running the program from the MATLAB script, paste those files into the same folder as " Vulintus_Firmware_Updater.m", which should be:
+
+     \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
+
+If you're running the standalone program, paste the files into this folder (you can copy and paste into Windows Explorer):
+
+C:\Program Files\Vulintus\Vulintus_Firmware_Updater\application
+
+
+Try running it again, and the error shouldn't re-appear.
+
 ---
 ### Updating the Firmware on the OmniTrak Common Controller (OT-CC)
 
@@ -51,25 +74,9 @@ Use the links below to jump to the instructions for updating the firmware on spe
      ![Vulintus Firmware Updater with no fields yet set](/assets/controller_ready_to_be_programmed.png)
 
 3. Press the "PROGRAM" button to start programming.
-    * At this point you may encounter an error message that says "ERROR: Could not find programmer bossac.exe or associated files in the current directory." If you see this error, looks like this:
-
-image.png
-
-If you see this error, it means that the program couldn't find the upload-control program and associated files. Often, this is caused by internet security programs blocking downloads or installation of *.exe files, and you may need administrator privileges on your computer to fix it. Here are the steps to fix this error:
-If you haven't already, download the entire "Vulintus Firmware Updates" repository (step #1).
-Open the "utilities" folder and copy all of the files in that folder.
-
-image.png
-If you're running the program from the MATLAB script, paste those files into the same folder as " Vulintus_Firmware_Updater.m", which should be:
-
-     \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
-
-If you're running the standalone program, paste the files into this folder (you can copy and paste into Windows Explorer):
-
-C:\Program Files\Vulintus\Vulintus_Firmware_Updater\application
+    * At this point you may encounter an error message that says "ERROR: Could not find programmer bossac.exe or associated files in the current directory." If you see this error, follow [these steps](#fixing-a-avrdude.exe-or-bossac.exe-is-missing-error) to fix it.
 
 
-Try running it again, and the error shouldn't re-appear.
 If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message that looks like this:
 
 image.png
