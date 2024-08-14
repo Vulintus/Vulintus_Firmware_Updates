@@ -45,15 +45,15 @@ If you see this error, it means that the program couldn't find the upload-contro
 1. If you haven't already, download the entire "Vulintus Firmware Updates" repository (["First Steps"((#first-step_download-install-the-vulintus-firmware-updater-program)).
 Open the "utilities" folder and copy all of the files in that folder.
 
-  ![Utilities List](/assets/utilities_list.png)
+    ![Utilities List](/assets/utilities_list.png)
   
-    * If you're running the program from the MATLAB script, paste those files into the same folder as " Vulintus_Firmware_Updater.m", which should be:
+  * If you're running the program from the MATLAB script, paste those files into the same folder as " Vulintus_Firmware_Updater.m", which should be:
 
-         > \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
+    > \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
 
-    * If you're running the standalone program, paste the files into this folder (you can copy and paste into Windows Explorer):
+  * If you're running the standalone program, paste the files into this folder (you can copy and paste into Windows Explorer):
 
-         > C:\Program Files\Vulintus\Vulintus_Firmware_Updater\application
+    > C:\Program Files\Vulintus\Vulintus_Firmware_Updater\application
 
 2. Try running it again, and the error shouldn't re-appear.
 
