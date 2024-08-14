@@ -1,16 +1,24 @@
 # Vulintus Firmware Updates
 
-This page will guide through the process of updating the firmware on Vulintus devices. We're always working to 
-Updating the firmware on the OmniTrak Controller:
-If you haven't done so already, download and install the Vulintus Firmware Updater program. The program is written in MATLAB, and can be run either as a MATLAB script or, if you don't have MATLAB on the updating computer, it can be installed like any other Windows-based program.
-To run the Firmware Updater as a MATLAB script, you'll need to download the scripts for the repository, which you can do by clicking the "<> Code" button on the main page and selecting "Download ZIP" or by cloning the repository to your computer using Git.
+This page will guide through the process of updating the firmware on Vulintus devices. We're always working to make the firmware-updating process easier, and we'll update this guide with each new improvement, so check back every once in a while!
+
+---
+
+## First Steps: Donwload/Install the Vulintus Firmware Updater program
+
+The first step for updating the firmware on any Vulintus device is to download and install the Vulintus Firmware Updater program. The program is written in MATLAB, and can be run either as a MATLAB script or, if you don't have MATLAB on the updating computer, it can be installed like any other Windows-based program.
+
+To run the Firmware Updater as a MATLAB script, you'll need to download the scripts from this repository, which you can do by clicking the "<> Code" button on the main page and selecting "Download ZIP" or by cloning the repository to your computer using Git.
+
 To install the Firmware Updater as a typical Windows program, download the installer from this link, launch the installer, and then follow the prompts to install it. To find the program once it's installed, search for "Vulintus Firmware Updater" in the windows search bar, and you should see it. It's helpful to create a desktop shortcut for the program.
 Start up the Firmware Updater Program.
+
 If using the MATLAB script, the script is located in the downloaded files under:
 
      \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
 
 If using the compiled program, search for "Vulintus_Firwmare_Updater" in the Windows search bar to locate the program.
+
 In the Window that opens, you'll see three parameters you'll need to set:
 
 image.png
