@@ -117,12 +117,12 @@ Open the "utilities" folder and copy all of the files in that folder.
 
 7. Next, if you have multiple nosepokes connected to the OmniTrak Controller, we'll need to program them one at a time. You'll select the target nosepoke by rotating the encoder dial on the front of the controller to highlight the target port, which will be shown with a yellow border on the display screen like so:
 
-    <img src="./assets/serial_relay_select_target_port.jpg" width="200">
+    <img src="./assets/serial_relay_select_target_port.jpg" width="250">
     <!---![Serial relay select target port](/assets/serial_relay_select_target_port.jpg)--->    
 
 8. You're ready to program, but now comes the tricky part. We need to reset the nosepoke microcontroller right as the upload starts so that it enters a bootloader mode. The reset button on the nosepoke / pellet receiver is located here, just below the ethernet style connector:
 
-    <img src="./assets/nosepoke_reset_button.png" width="200">
+    <img src="./assets/nosepoke_reset_button.png" width="250">
     <!---![Nosepoke reset button](/assets/nosepoke_reset_button.png)--->    
 
 9. Now, press the "PROGRAM" button on the "Vulintus Firmware Updater" program, and press the reset button on the nosepoke at the same time or just slightly afterwards. There's a grace period of ~half a second. 
