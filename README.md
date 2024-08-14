@@ -22,7 +22,7 @@ This page will guide through the process of updating the firmware on Vulintus de
   
 3. In the Window that opens, you'll see three parameters you'll need to set for every Vulintus device:
 
-image.png
+    ![Vulintus Firmware Updater with no fields yet set](/assets/updater_with_no_fields_set.png)
 
      * **COM Port:** Select the COM port associated with the OmniTrak Controller you want to reprogram. If you're unsure which COM port is assigned to which controller, make a note of the COM ports that are listed in the drop-down menu, and then unplug the target controller's USB cable. Press the "SCAN" button to the right of the drop-down menu to refresh the COM port list. Whichever port is now not in the list is the COM port associated with your controller. Plug it back in, click "SCAN" one more time, and then select that port.
      
