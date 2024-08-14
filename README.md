@@ -66,18 +66,18 @@ Open the "utilities" folder and copy all of the files in that folder.
      
     * **HEX/BIN File:** The latest compiled binary of the OmniTrak Common Controller firmware can be downloaded from this link:
   
-      [OmniTrak_Controller_20240712.bin](compiled_binaries/OmniTrak/OmniTrak_Controller_20240712.bin)
-     
+      [OmniTrak_Controller_20240712.bin](raw/main/compiled_binaries/OmniTrak/OmniTrak_Controller_20240712.bin)
+
     * **Programmer:** For the OmniTrak Common Controller, select "bossac.exe".
 
-2. With all three fields set, the interface will look something like this:
+1. With all three fields set, the interface will look something like this:
 
      ![Vulintus Firmware Updater with no fields yet set](/assets/controller_ready_to_be_programmed.png)
 
-3. Press the "PROGRAM" button to start programming.
+2. Press the "PROGRAM" button to start programming.
     * At this point you may encounter an error message that says "ERROR: Could not find programmer bossac.exe or associated files in the current directory." If you see this error, follow [these steps](#fixing-a-avrdude.exe-or-bossac.exe-is-missing-error) to fix it.
 
-4. If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message that looks like this:
+3. If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message that looks like this:
 
      ![Controller successfully programmed](/assets/controller_ready_to_be_programmed.png)
 
