@@ -75,10 +75,9 @@ Open the "utilities" folder and copy all of the files in that folder.
 3. Press the "PROGRAM" button to start programming.
     * At this point you may encounter an error message that says "ERROR: Could not find programmer bossac.exe or associated files in the current directory." If you see this error, follow [these steps](#fixing-a-avrdude.exe-or-bossac.exe-is-missing-error) to fix it.
 
+4. If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message that looks like this:
 
-If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message that looks like this:
-
-image.png
+     ![Controller successfully programmed](/assets/controller_ready_to_be_programmed.png)
 
 ---
 ### Updating the Firmware on the OmniTrak Nosepoke Module (OT-NP)
