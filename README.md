@@ -2,6 +2,11 @@
 
 This page will guide through the process of updating the firmware on Vulintus devices. We're always working to make the firmware-updating process easier, and we'll update this guide with each new improvement, so check back every once in a while!
 
+Use the links below to jump to the instructions for updating the firmware on specific Vulintus devices, but don't forget to download/install the the Vulintus Firmware Updater program first ([First Steps](#first-step_download-install-the-vulintus-firmware-updater-program)).
+
+* [OmniTrak Common Controller (OT-CC)](#updating-the-firmware-on-the-omniTrak-common-controller-ot-cc)
+    
+* [OmniTrak Nosepoke Module (OT-NP)](#updating-the-firmware-on-the-omniTrak-nosepoke-module-ot-np)
 ---
 
 ## First Steps: Download/Install the Vulintus Firmware Updater program
@@ -29,15 +34,6 @@ This page will guide through the process of updating the firmware on Vulintus de
     * **HEX/BIN File:** Firmware updates for each Vulintus device are provided as compiled binary files in the "compiled_binaries" folder in this repository.
      
     * **Programmer:** Vulintus uses two types of microcontrollers in our devices, and each requires a different upload-control program: avrdude.exe or bossac.exe.
-
----
-## Vulintus Device List
-
-Use the links below to jump to the instructions for updating the firmware on specific Vulintus devices:
-
-* [OmniTrak Common Controller (OT-CC)](#updating-the-firmware-on-the-omniTrak-common-controller-ot-cc)
-    
-* [OmniTrak Nosepoke Module (OT-NP)](#updating-the-firmware-on-the-omniTrak-nosepoke-module-ot-np)
     
 ---
 ### Updating the Firmware on the OmniTrak Common Controller (OT-CC)
