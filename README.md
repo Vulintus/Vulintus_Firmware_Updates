@@ -38,7 +38,7 @@ Use the links below to jump to the instructions for updating the firmware on spe
 ---
 ### Fixing a "avrdude.exe" or "bossac.exe" is Missing Error
 
-  ![Programmer not found error message](/assets/error_programmer_not_found.png)
+   ![Programmer not found error message](/assets/error_programmer_not_found.png)
 
 If you see this error, it means that the program couldn't find the upload-control program and associated files. Often, this is caused by internet security programs blocking downloads or installation of *.exe files, and you may need administrator privileges on your computer to fix it. Here are the steps to fix this error:
 
@@ -47,16 +47,15 @@ Open the "utilities" folder and copy all of the files in that folder.
 
   ![Utilities List](/assets/utilities_list.png)
   
-If you're running the program from the MATLAB script, paste those files into the same folder as " Vulintus_Firmware_Updater.m", which should be:
+    * If you're running the program from the MATLAB script, paste those files into the same folder as " Vulintus_Firmware_Updater.m", which should be:
 
-     \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
+         > \Vulintus_Firmware_Updates\MATLAB Scripts\Vulintus_Firmware_Updater.m
 
-If you're running the standalone program, paste the files into this folder (you can copy and paste into Windows Explorer):
+    * If you're running the standalone program, paste the files into this folder (you can copy and paste into Windows Explorer):
 
-C:\Program Files\Vulintus\Vulintus_Firmware_Updater\application
+         > C:\Program Files\Vulintus\Vulintus_Firmware_Updater\application
 
-
-Try running it again, and the error shouldn't re-appear.
+2. Try running it again, and the error shouldn't re-appear.
 
 ---
 ### Updating the Firmware on the OmniTrak Common Controller (OT-CC)
