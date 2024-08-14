@@ -27,6 +27,7 @@ Use the links below to jump to the instructions for updating the firmware on spe
   
 3. In the Window that opens, you'll see three parameters you'll need to set for every Vulintus device:
 
+     <img src="./assets/updater_with_no_fields_set.png" width="100">
      ![Vulintus Firmware Updater with no fields yet set](/assets/updater_with_no_fields_set.png | width="100")
 
     * **COM Port:** Select the COM port associated with the Vulintus device you want to reprogram. If you're unsure which COM port is assigned to which device, make a note of the COM ports that are listed in the drop-down menu, and then unplug the target device's USB cable. Press the "SCAN" button to the right of the drop-down menu to refresh the COM port list. Whichever port is now not in the list is the COM port associated with your device. Plug it back in, click "SCAN" one more time, and then select that port.
