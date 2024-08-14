@@ -27,7 +27,7 @@ Use the links below to jump to the instructions for updating the firmware on spe
   
 3. In the Window that opens, you'll see three parameters you'll need to set for every Vulintus device:
 
-     ![Vulintus Firmware Updater with no fields yet set](/assets/updater_with_no_fields_set.png)
+     ![Vulintus Firmware Updater with no fields yet set](/assets/updater_with_no_fields_set.png | width=100)
 
     * **COM Port:** Select the COM port associated with the Vulintus device you want to reprogram. If you're unsure which COM port is assigned to which device, make a note of the COM ports that are listed in the drop-down menu, and then unplug the target device's USB cable. Press the "SCAN" button to the right of the drop-down menu to refresh the COM port list. Whichever port is now not in the list is the COM port associated with your device. Plug it back in, click "SCAN" one more time, and then select that port.
      
@@ -38,14 +38,14 @@ Use the links below to jump to the instructions for updating the firmware on spe
 ---
 ### Fixing a "avrdude.exe" or "bossac.exe" is Missing Error
 
-   ![Programmer not found error message](/assets/error_programmer_not_found.png)
+   ![Programmer not found error message](/assets/error_programmer_not_found.png | width=100)
 
 If you see this error, it means that the program couldn't find the upload-control program and associated files. Often, this is caused by internet security programs blocking downloads or installation of *.exe files, and you may need administrator privileges on your computer to fix it. Here are the steps to fix this error:
 
 1. If you haven't already, download the entire "Vulintus Firmware Updates" repository (["First Steps"((#first-step_download-install-the-vulintus-firmware-updater-program)).
 Open the "utilities" folder and copy all of the files in that folder.
 
-    ![Utilities List](/assets/utilities_list.png)
+    ![Utilities List](/assets/utilities_list.png | width=50)
   
   * If you're running the program from the MATLAB script, paste those files into the same folder as " Vulintus_Firmware_Updater.m", which should be:
 
@@ -72,14 +72,14 @@ Open the "utilities" folder and copy all of the files in that folder.
 
 1. With all three fields set, the interface will look something like this:
 
-     ![Vulintus Firmware Updater with no fields yet set](/assets/controller_ready_to_be_programmed.png)
+     ![Vulintus Firmware Updater with no fields yet set](/assets/controller_ready_to_be_programmed.png | width=100)
 
 2. Press the "PROGRAM" button to start programming.
     * At this point you may encounter an error message that says "ERROR: Could not find programmer bossac.exe or associated files in the current directory." If you see this error, follow [these steps](#fixing-a-avrdude.exe-or-bossac.exe-is-missing-error) to fix it.
 
 3. If everything worked correctly, you should see a lot of text crawl across the messagebox on the window, ending a "Verify successful" message that looks like this:
 
-     ![Controller successfully programmed](/assets/controller_ready_to_be_programmed.png)
+     ![Controller successfully programmed](/assets/controller_successfully_programmed.png | width=100)
 
 ---
 ### Updating the Firmware on the OmniTrak Nosepoke Module (OT-NP)
@@ -107,11 +107,11 @@ Open the "utilities" folder and copy all of the files in that folder.
    
 6. Finally, change the programmer to "avrdude.exe". The program should now look something like this:
 
-     ![Nosepoke ready to be programmed](/assets/nosepoke_ready_to_be_programmed.png)
+     ![Nosepoke ready to be programmed](/assets/nosepoke_ready_to_be_programmed.png | width=100)
 
 7. Next, if you have multiple nosepokes connected to the OmniTrak Controller, we'll need to program them one at a time. You'll select the target nosepoke by rotating the encoder dial on the front of the controller to highlight the target port, which will be shown with a yellow border on the display screen like so:
 
-     ![Serial relay select target port](/assets/serial_relay_select_target_port.jpg)
+     ![Serial relay select target port](/assets/serial_relay_select_target_port.jpg | width=50)
 
 8. You're ready to program, but now comes the tricky part. We need to reset the nosepoke microcontroller right as the upload starts so that it enters a bootloader mode. The reset button on the nosepoke / pellet receiver is located here, just below the ethernet style connector:
 
