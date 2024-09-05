@@ -3,8 +3,8 @@ function toolbox_exists = Vulintus_Check_MATLAB_Toolboxes(toolbox, varargin)
 %
 %Vulintus_Check_MATLAB_Toolboxes.m - Vulintus, Inc.
 %
-%   This script checks the MATLAB installation for the specified required
-%   toolbox and throws an error if it isn't found.
+%   VULINTUS_CHECK_MATLAB_TOOLBOXES checks the MATLAB installation for the 
+%   specified required toolbox and throws an error if it isn't found.
 %   
 %   UPDATE LOG:
 %   2024-01-24 - Drew Sloan - Function first created.

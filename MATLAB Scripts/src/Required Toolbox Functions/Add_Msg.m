@@ -11,55 +11,61 @@ function Add_Msg(msgbox,new_msg)
 %   "msgbox".
 %
 %   UPDATE LOG:
-%   09/09/2016 - Drew Sloan - Fixed the bug caused by setting the
-%       ListboxTop property to an non-existent item.
-%   11/26/2021 - Drew Sloan - Added the option to post status messages to a
-%       scrolling text area (uitextarea).
-%   02/02/2022 - Drew Sloan - Fixed handling of the UIControl ListBox type
-%       to now use the "style" for identification.
+%   2016-09-09 - Drew Sloan - Fixed the bug caused by setting the
+%                             ListboxTop property to an non-existent item.
+%   2021-11-26 - Drew Sloan - Added the option to post status messages to a
+%                             scrolling text area (uitextarea).
+%   2022-02-02 - Drew Sloan - Fixed handling of the UIControl ListBox type
+%                             to now use the "style" for identification.
+%   2024-06-11 - Drew Sloan - Added a for loop to handle arrays of
+%                             messageboxes.
 %
 
-switch get(msgbox,'type')                                                   %Switch between the recognized components.
-    
-    case 'uicontrol'                                                        %If the messagebox is a listbox...
-        switch get(msgbox,'style')                                          %Switch between the recognized uicontrol styles.
-            
-            case 'listbox'                                                  %If the messagebox is a listbox...
-                messages = get(msgbox,'string');                            %Grab the current string in the messagebox.
-                if isempty(messages)                                        %If there's no messages yet in the messagebox...
-                    messages = {};                                          %Create an empty cell array to hold messages.
-                elseif ~iscell(messages)                                    %If the string property isn't yet a cell array...
-                    messages = {messages};                                  %Convert the messages to a cell array.
-                end
-                messages{end+1} = new_msg;                                  %Add the new message to the listbox.
-                set(msgbox,'string',messages);                              %Update the strings in the listbox.
-                set(msgbox,'value',length(messages),...
-                    'ListboxTop',length(messages));                         %Set the value of the listbox to the newest messages.
-                set(msgbox,'min',0,...
-                    'max',2',...
-                    'selectionhighlight','off',...
-                    'value',[]);                                            %Set the properties on the listbox to make it look like a simple messagebox.
-                drawnow;                                                    %Update the GUI.
-                
-        end
+for gui_i = 1:length(msgbox)                                                %Step through each messagebox.
+
+    switch get(msgbox(gui_i),'type')                                        %Switch between the recognized components.
         
-    case 'uitextarea'                                                       %If the messagebox is a uitextarea...
-        messages = msgbox.Value;                                            %Grab the current strings in the messagebox.
-        if ~iscell(messages)                                                %If the string property isn't yet a cell array...
-            messages = {messages};                                          %Convert the messages to a cell array.
-        end
-        checker = 1;                                                        %Create a matrix to check for non-empty cells.
-        for i = 1:numel(messages)                                           %Step through each message.
-            if ~isempty(messages{i})                                        %If there any non-empty messages...
-                checker = 0;                                                %Set checker equal to zero.
+        case 'uicontrol'                                                    %If the messagebox is a listbox...
+            switch get(msgbox(gui_i),'style')                               %Switch between the recognized uicontrol styles.
+                
+                case 'listbox'                                              %If the messagebox is a listbox...
+                    messages = get(msgbox(gui_i),'string');                 %Grab the current string in the messagebox.
+                    if isempty(messages)                                    %If there's no messages yet in the messagebox...
+                        messages = {};                                      %Create an empty cell array to hold messages.
+                    elseif ~iscell(messages)                                %If the string property isn't yet a cell array...
+                        messages = {messages};                              %Convert the messages to a cell array.
+                    end
+                    messages{end+1} = new_msg;                              %Add the new message to the listbox.
+                    set(msgbox(gui_i),'string',messages);                   %Update the strings in the listbox.
+                    set(msgbox(gui_i),'value',length(messages),...
+                        'ListboxTop',length(messages));                     %Set the value of the listbox to the newest messages.
+                    set(msgbox(gui_i),'min',0,...
+                        'max',2',...
+                        'selectionhighlight','off',...
+                        'value',[]);                                        %Set the properties on the listbox to make it look like a simple messagebox.
+                    drawnow;                                                %Update the GUI.
+                    
             end
-        end
-        if checker == 1                                                     %If all messages were empty.
-            messages = {};                                                  %Set the messages to an empty cell array.
-        end
-        messages{end+1} = new_msg;                                          %Add the new message to the listbox.
-        msgbox.Value = messages;                                            %Update the strings in the Text Area.        
-        drawnow;                                                            %Update the GUI.
-        scroll(msgbox,'bottom');                                            %Scroll to the bottom of the Text Area.
+            
+        case 'uitextarea'                                                   %If the messagebox is a uitextarea...
+            messages = msgbox(gui_i).Value;                                 %Grab the current strings in the messagebox.
+            if ~iscell(messages)                                            %If the string property isn't yet a cell array...
+                messages = {messages};                                      %Convert the messages to a cell array.
+            end
+            checker = 1;                                                    %Create a matrix to check for non-empty cells.
+            for i = 1:numel(messages)                                       %Step through each message.
+                if ~isempty(messages{i})                                    %If there any non-empty messages...
+                    checker = 0;                                            %Set checker equal to zero.
+                end
+            end
+            if checker == 1                                                 %If all messages were empty.
+                messages = {};                                              %Set the messages to an empty cell array.
+            end
+            messages{end+1} = new_msg;                                      %Add the new message to the listbox.
+            msgbox(gui_i).Value = messages;                                 %Update the strings in the Text Area.        
+            drawnow;                                                        %Update the GUI.
+            scroll(msgbox(gui_i),'bottom');                                 %Scroll to the bottom of the Text Area.
+    end
+
 end
         

@@ -1,6 +1,6 @@
 function Vulintus_Firmware_Updater
 
-%Collated: 2024-06-11, 07:22:23
+%Collated: 2024-09-05, 09:28:12
 
 Vulintus_Firmware_Updater_Startup;                                          %Call the startup function.
 
@@ -41,7 +41,7 @@ end
 ui_h = 0.7;                                                                 %Set the height for all buttons, in centimeters.
 fig_w = 15;                                                                 %Set the width of the figure, in centimeters.
 ui_sp = 0.1;                                                                %Set the space between uicontrols, in centimeters.
-fig_h = 6*ui_sp + 12*ui_h;                                                  %Calculate the height of the figure.
+fig_h = 7*ui_sp + 13*ui_h;                                                  %Calculate the height of the figure.
 set(0,'units','centimeters');                                               %Set the screensize units to centimeters.
 pos = get(0,'ScreenSize');                                                  %Grab the screensize.
 pos = [pos(3)/2-fig_w/2, pos(4)/2-fig_h/2, fig_w, fig_h];                   %Scale a figure position relative to the screensize.
@@ -120,7 +120,7 @@ uicontrol(fig,'style','edit',...
     'enable','inactive',...
     'horizontalalignment','right',...
     'backgroundcolor',[0.9 0.9 1],...
-    'tag','programmer)lbl');                                                %Make a label for the programmer.
+    'tag','programmer_lbl');                                                %Make a label for the programmer.
 uicontrol(fig,'style','popupmenu',...
     'String',{'avrdude.exe','bossac.exe'},...
     'units','centimeters',...    
@@ -131,6 +131,27 @@ uicontrol(fig,'style','popupmenu',...
     'tag','prog_pop');                                                      %Make a programmer pop-up menu.
 
 y = fig_h - 4*ui_h - 4*ui_sp;                                               %Set the bottom edge for this row of uicontrols.
+uicontrol(fig,'style','edit',...
+    'String','Boot Offset: ',...
+    'units','centimeters',...    
+    'position',[ui_sp, y, 3, ui_h],...
+    'fontweight','bold',...
+    'fontsize',12,...
+    'enable','inactive',...
+    'horizontalalignment','right',...
+    'backgroundcolor',[0.9 0.9 1],...
+    'tag','bootloader_lbl');                                                %Make a label for the bootloader offset.
+uicontrol(fig,'style','popupmenu',...
+    'String',{'0x2000','0x4000'},...
+    'units','centimeters',...    
+    'position',[3 + 2*ui_sp, y, fig_w - 3*ui_sp - 3, ui_h],...
+    'fontweight','bold',...
+    'fontsize',12,...
+    'value',2,...
+    'enable','on',...
+    'tag','boot_pop');                                                      %Make a bootloader offset pop-up menu.
+
+y = fig_h - 5*ui_h - 5*ui_sp;                                               %Set the bottom edge for this row of uicontrols.
 prog_btn = uicontrol(fig,'style','pushbutton',...
     'String','PROGRAM',...
     'units','centimeters',...    
@@ -198,6 +219,7 @@ msgbox = findobj(obj,'tag','msgbox');                                       %Gra
 port_pop = findobj(obj,'tag','port_pop');                                   %Grab the port pop-up menu handle.
 file_edit = findobj(obj,'tag','file_edit');                                 %Grab the file editbox handle.
 prog_pop = findobj(obj,'tag','prog_pop');                                   %Grab the programmer pop-up menu handle.
+boot_pop = findobj(obj,'tag','boot_pop');                                   %Grab the bootloader offset pop-up menu handle.
 Clear_Msg(msgbox);                                                          %Clear the message.
 temp = port_pop.UserData;                                                   %Grab the user data from the port pop-up menu.
 port = temp{port_pop.Value};                                                %Grab the name of the selected COM port.
@@ -207,6 +229,8 @@ file = file_edit.UserData;                                                  %Gra
 % copyfile(file,temp_file,'f');                                               %Copy the file to the temporary directory.
 temp = prog_pop.String;                                                     %Grab the string from the programmer pop-up menu.
 programmer = temp{prog_pop.Value};                                          %Grab the name of the selected COM port.
+temp = boot_pop.String;                                                     %Grab the bootloader offset options.
+offset = temp{boot_pop.Value};                                              %Grab the currently selected booloader offset.
 switch programmer                                                           %Switch between the programmers.
 
     case 'avrdude.exe'                                                      %If we're using avrdude...
@@ -233,6 +257,7 @@ switch programmer                                                           %Swi
             '-b115200 '...                                                  %baud rate
             '-D '...                                                        %disable erasing the chip
             '-Uflash:w:"' file '":i'];                                      %hex file name.
+
     case 'bossac.exe'                                                       %If we're using bossac...
 
 %         'https://github.com/arduino/arduino-flash-tools/raw/master/tools_darwin/bossac/bin/bossac'
@@ -273,6 +298,7 @@ switch programmer                                                           %Swi
         end
         Add_Msg(msgbox,str);                                                %Sow a message in the messagebox.
 
+
         % "C:\Users\drew\AppData\Local\Arduino15\packages\adafruit\tools\bossac\1.8.0-48-gb176eee/bossac" 
         % -i 
         % -d 
@@ -291,7 +317,7 @@ switch programmer                                                           %Swi
             '--port=' temp_port ' '...                                      %Set the COM port.
             '-U '...                                                        %Allow automatic COM port detection.
             '-i '...                                                        %Display diagnostic information about the device.
-            '--offset=0x4000 '...                                           %Specify the flash memory starting offset (to retain the bootloader).
+            '--offset=' offset ' '...                                           %Specify the flash memory starting offset (to retain the bootloader).
             '-w '...                                                        %Write the file to the target's flash memory.
             '-v '...                                                        %Verify the file matches the contents after writing.
             '"' file '" '...                                                %Set the file.
@@ -404,56 +430,62 @@ function Add_Msg(msgbox,new_msg)
 %   "msgbox".
 %
 %   UPDATE LOG:
-%   09/09/2016 - Drew Sloan - Fixed the bug caused by setting the
-%       ListboxTop property to an non-existent item.
-%   11/26/2021 - Drew Sloan - Added the option to post status messages to a
-%       scrolling text area (uitextarea).
-%   02/02/2022 - Drew Sloan - Fixed handling of the UIControl ListBox type
-%       to now use the "style" for identification.
+%   2016-09-09 - Drew Sloan - Fixed the bug caused by setting the
+%                             ListboxTop property to an non-existent item.
+%   2021-11-26 - Drew Sloan - Added the option to post status messages to a
+%                             scrolling text area (uitextarea).
+%   2022-02-02 - Drew Sloan - Fixed handling of the UIControl ListBox type
+%                             to now use the "style" for identification.
+%   2024-06-11 - Drew Sloan - Added a for loop to handle arrays of
+%                             messageboxes.
 %
 
-switch get(msgbox,'type')                                                   %Switch between the recognized components.
-    
-    case 'uicontrol'                                                        %If the messagebox is a listbox...
-        switch get(msgbox,'style')                                          %Switch between the recognized uicontrol styles.
-            
-            case 'listbox'                                                  %If the messagebox is a listbox...
-                messages = get(msgbox,'string');                            %Grab the current string in the messagebox.
-                if isempty(messages)                                        %If there's no messages yet in the messagebox...
-                    messages = {};                                          %Create an empty cell array to hold messages.
-                elseif ~iscell(messages)                                    %If the string property isn't yet a cell array...
-                    messages = {messages};                                  %Convert the messages to a cell array.
-                end
-                messages{end+1} = new_msg;                                  %Add the new message to the listbox.
-                set(msgbox,'string',messages);                              %Update the strings in the listbox.
-                set(msgbox,'value',length(messages),...
-                    'ListboxTop',length(messages));                         %Set the value of the listbox to the newest messages.
-                set(msgbox,'min',0,...
-                    'max',2',...
-                    'selectionhighlight','off',...
-                    'value',[]);                                            %Set the properties on the listbox to make it look like a simple messagebox.
-                drawnow;                                                    %Update the GUI.
-                
-        end
+for gui_i = 1:length(msgbox)                                                %Step through each messagebox.
+
+    switch get(msgbox(gui_i),'type')                                        %Switch between the recognized components.
         
-    case 'uitextarea'                                                       %If the messagebox is a uitextarea...
-        messages = msgbox.Value;                                            %Grab the current strings in the messagebox.
-        if ~iscell(messages)                                                %If the string property isn't yet a cell array...
-            messages = {messages};                                          %Convert the messages to a cell array.
-        end
-        checker = 1;                                                        %Create a matrix to check for non-empty cells.
-        for i = 1:numel(messages)                                           %Step through each message.
-            if ~isempty(messages{i})                                        %If there any non-empty messages...
-                checker = 0;                                                %Set checker equal to zero.
+        case 'uicontrol'                                                    %If the messagebox is a listbox...
+            switch get(msgbox(gui_i),'style')                               %Switch between the recognized uicontrol styles.
+                
+                case 'listbox'                                              %If the messagebox is a listbox...
+                    messages = get(msgbox(gui_i),'string');                 %Grab the current string in the messagebox.
+                    if isempty(messages)                                    %If there's no messages yet in the messagebox...
+                        messages = {};                                      %Create an empty cell array to hold messages.
+                    elseif ~iscell(messages)                                %If the string property isn't yet a cell array...
+                        messages = {messages};                              %Convert the messages to a cell array.
+                    end
+                    messages{end+1} = new_msg;                              %Add the new message to the listbox.
+                    set(msgbox(gui_i),'string',messages);                   %Update the strings in the listbox.
+                    set(msgbox(gui_i),'value',length(messages),...
+                        'ListboxTop',length(messages));                     %Set the value of the listbox to the newest messages.
+                    set(msgbox(gui_i),'min',0,...
+                        'max',2',...
+                        'selectionhighlight','off',...
+                        'value',[]);                                        %Set the properties on the listbox to make it look like a simple messagebox.
+                    drawnow;                                                %Update the GUI.
+                    
             end
-        end
-        if checker == 1                                                     %If all messages were empty.
-            messages = {};                                                  %Set the messages to an empty cell array.
-        end
-        messages{end+1} = new_msg;                                          %Add the new message to the listbox.
-        msgbox.Value = messages;                                            %Update the strings in the Text Area.        
-        drawnow;                                                            %Update the GUI.
-        scroll(msgbox,'bottom');                                            %Scroll to the bottom of the Text Area.
+            
+        case 'uitextarea'                                                   %If the messagebox is a uitextarea...
+            messages = msgbox(gui_i).Value;                                 %Grab the current strings in the messagebox.
+            if ~iscell(messages)                                            %If the string property isn't yet a cell array...
+                messages = {messages};                                      %Convert the messages to a cell array.
+            end
+            checker = 1;                                                    %Create a matrix to check for non-empty cells.
+            for i = 1:numel(messages)                                       %Step through each message.
+                if ~isempty(messages{i})                                    %If there any non-empty messages...
+                    checker = 0;                                            %Set checker equal to zero.
+                end
+            end
+            if checker == 1                                                 %If all messages were empty.
+                messages = {};                                              %Set the messages to an empty cell array.
+            end
+            messages{end+1} = new_msg;                                      %Add the new message to the listbox.
+            msgbox(gui_i).Value = messages;                                 %Update the strings in the Text Area.        
+            drawnow;                                                        %Update the GUI.
+            scroll(msgbox(gui_i),'bottom');                                 %Scroll to the bottom of the Text Area.
+    end
+
 end
         
 
@@ -471,39 +503,45 @@ function Clear_Msg(varargin)
 %   "msgbox".
 %
 %   UPDATE LOG:
-%   01/24/2013 - Drew Sloan - Function first created.
-%   11/26/2021 - Drew Sloan - Added functionality to use scrolling text
-%       areas (uitextarea) as messageboxes.
+%   2013-01-24 - Drew Sloan - Function first created.
+%   2021-11-26 - Drew Sloan - Added functionality to use scrolling text
+%                             areas (uitextarea) as messageboxes.
+%   2024-06-11 - Drew Sloan - Added a for loop to handle arrays of
+%                             messageboxes.
 %
 
 if nargin == 1                                                              %If there's only one input argument...
-    msgbox = varargin{1};                                                  %The listbox handle is the first input argument.
+    msgbox = varargin{1};                                                   %The listbox handle is the first input argument.
 elseif nargin == 3                                                          %Otherwise, if there's three input arguments...
-    msgbox = varargin{3};                                                  %The listbox handle is the third input argument.
+    msgbox = varargin{3};                                                   %The listbox handle is the third input argument.
 end
 
-if strcmpi(get(msgbox,'type'),'uicontrol')                                  %If the messagebox is a uicontrol...
-    msgbox_type = get(msgbox,'style');                                      %Grab the style property.
-else                                                                        %Otherwise...
-    msgbox_type = get(msgbox,'type');                                       %Grab the type property.
-end
+for i = 1:length(msgbox)                                                    %Step through each messagebox.
 
-switch msgbox_type                                                          %Switch between the recognized components.
+    if strcmpi(get(msgbox(1),'type'),'uicontrol')                           %If the messagebox is a uicontrol...
+        msgbox_type = get(msgbox(1),'style');                               %Grab the style property.
+    else                                                                    %Otherwise...
+        msgbox_type = get(msgbox(1),'type');                                %Grab the type property.
+    end
     
-    case 'listbox'                                                          %If the messagebox is a listbox...
-        set(msgbox,'string',{},...
-            'min',0,...
-            'max',0',...
-            'selectionhighlight','off',...
-            'value',[]);                                                    %Clear the messages and set the properties on the listbox to make it look like a simple messagebox.
+    switch msgbox_type                                                      %Switch between the recognized components.
         
-    case 'uitextarea'                                                       %If the messagebox is a uitextarea...
-        messages = {''};                                                    %Create a cell array with one empty entry.
-        msgbox.Value = messages;                                            %Update the strings in the Text Area.
-        scroll(msgbox,'bottom');                                            %Scroll to the bottom of the Text Area.
-        drawnow;                                                            %Update the GUI.
-        
-end
+        case 'listbox'                                                      %If the messagebox is a listbox...
+            set(msgbox(1),'string',{},...
+                'min',0,...
+                'max',0',...
+                'selectionhighlight','off',...
+                'value',[]);                                                %Clear the messages and set the properties on the listbox to make it look like a simple messagebox.
+            
+        case 'uitextarea'                                                   %If the messagebox is a uitextarea...
+            messages = {''};                                                %Create a cell array with one empty entry.
+            msgbox(1).Value = messages;                                     %Update the strings in the Text Area.
+            scroll(msgbox(1),'bottom');                                     %Scroll to the bottom of the Text Area.
+            drawnow;                                                        %Update the GUI.
+            
+    end
+
+end 
 
 
 %% ***********************************************************************
@@ -512,8 +550,8 @@ function toolbox_exists = Vulintus_Check_MATLAB_Toolboxes(toolbox, varargin)
 %
 %Vulintus_Check_MATLAB_Toolboxes.m - Vulintus, Inc.
 %
-%   This script checks the MATLAB installation for the specified required
-%   toolbox and throws an error if it isn't found.
+%   VULINTUS_CHECK_MATLAB_TOOLBOXES checks the MATLAB installation for the 
+%   specified required toolbox and throws an error if it isn't found.
 %   
 %   UPDATE LOG:
 %   2024-01-24 - Drew Sloan - Function first created.
