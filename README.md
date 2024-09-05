@@ -12,8 +12,8 @@ We're always working to make the firmware-updating process easier, and we'll upd
 
 Quick links:
 
-* [Vulintus Firmware Updater Installer](https://github.com/Vulintus/Vulintus_Firmware_Updates/blob/main/compiled_binaries/OmniTrak/OmniTrak_Controller_20240712.bin?raw=1)
+* [Vulintus Firmware Updater Installer](https://github.com/Vulintus/Vulintus_Firmware_Updates/blob/main/compiled/for_redistribution/Vulintus_Firmware_Updater_Installer.exe?raw=1)
 
 Latest firmware binaries
-* [OmniTrak Common Controller V2.1](https://github.com/Vulintus/Vulintus_Firmware_Updates/blob/main/compiled_binaries/OmniTrak/OmniTrak_Controller_20240712.bin?raw=1)
+* [OmniTrak Common Controller V2.1](https://github.com/Vulintus/Vulintus_Firmware_Updates/blob/main/compiled_binaries/OmniTrak/vulintus_otcc_omnitrak_controller_v2p1_fw_20240905.bin?raw=1)
 * 
