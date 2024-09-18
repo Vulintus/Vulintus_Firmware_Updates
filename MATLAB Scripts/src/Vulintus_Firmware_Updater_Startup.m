@@ -12,6 +12,7 @@ function Vulintus_Firmware_Updater_Startup(varargin)
 %   2021-??-?? - Drew Sloan - Function first created.
 %
 
+
 %% Clean up the workspace.
 close all force;                                                            %Close any open figures.
 fclose all;                                                                 %Close any open data files.
